@@ -14,9 +14,6 @@
         - ca-certificates
         - curl
         - software-properties-common
-        - python3-pip
-        - virtualenv
-        - python3-setuptools
     - name: add GPG key for the official Docker repository to the system
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
