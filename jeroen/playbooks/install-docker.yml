@@ -33,3 +33,5 @@
         state: latest
     - name: add user jeroen to docker group
       command: usermod -aG docker jeroen
+    - name: auto start docker service
+      command: systemctl enable --now docker.service
