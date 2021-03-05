@@ -1,0 +1,11 @@
+---
+- name: checknano
+  hosts: linux
+  remote_user: jeroen
+  become: true
+  tasks:
+    - name: check if nano is installed
+      apt:
+        name: nano
+        state: latest
+   

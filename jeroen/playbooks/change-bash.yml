@@ -1,0 +1,15 @@
+---
+- name: changebash
+  hosts: linux
+  remote_user: jeroen
+  become: true
+  tasks:
+    - name: install fonts-powerline
+      apt:
+        name: fonts-powerline
+        state: latest 
+    - name: get new bash rc from github
+      get_url:
+        url: https://gist.githubusercontent.com/KaMeHb-UA/7b12035f29dad630f13a63a3dd72d183/raw/ca3696ad44bb846bb8b57e59869c21c7dd77650a/.bashrc
+        dest: /home/jeroen/.bashrc
+

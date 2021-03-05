@@ -1,0 +1,38 @@
+---
+- name: deploydocker
+  hosts: linux
+  remote_user: jeroen
+  become: true
+  tasks:
+    - name: update repositories
+      apt:
+        update_cache: yes
+    - name: install packages
+      apt:
+        pkg:
+        -  apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+        - python3-pip
+        - virtualenv
+        - python3-setuptools
+    - name: add GPG key for the official Docker repository to the system
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    - name: add docker repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+    - name: update repositories and install docker
+      apt:
+        update_cache: yes
+        name: docker-ce
+        state: latest
+    - name: install docker-compose
+      apt:
+        name: docker-compose
+        state: latest
+    - name: add user jeroen to docker group
+      command: usermod -aG docker jeroen
