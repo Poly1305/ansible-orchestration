@@ -10,7 +10,7 @@
     - name: install packages
       apt:
         pkg:
-        -  apt-transport-https
+        - apt-transport-https
         - ca-certificates
         - curl
         - software-properties-common
