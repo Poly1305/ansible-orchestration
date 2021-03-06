@@ -6,7 +6,7 @@ services:
     container_name: portainer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - <path>:/data
+      # edit path to :/data folder
     ports:
       - 8000:8000
       - 9000:9000
