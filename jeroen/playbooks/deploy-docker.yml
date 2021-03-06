@@ -1,0 +1,8 @@
+---
+- name: deploydocker
+  hosts: linux
+  remote_user: jeroen
+  become: true
+  tasks:
+    - name: create web network
+      command: docker network create web
