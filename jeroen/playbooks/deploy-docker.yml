@@ -1,9 +1,16 @@
+
 ---
+
+# Used modules
+# https://docs.ansible.com/ansible/2.6/modules/docker_container_module.html
+# https://docs.ansible.com/ansible/2.5/modules/file_module.html#file-module
+
 - name: deploydocker
   hosts: linux
   remote_user: jeroen
   become: true
   tasks:
+    # Create folders
     - name: create necessary folders
       file:
         path: "{{ item }}"
@@ -17,8 +24,10 @@
         - /home/jeroen/docker/portainer/data
         - /home/jeroen/docker/watchtower
 
-    #- name: create web network
-    #  command: docker network create web
+    # Create web network
+    - name: create web network
+      docker_network:
+        name: web      
 
     # Portainer
     - name: laungh portainer container
@@ -28,6 +37,7 @@
         restart_policy: unless-stopped
         detach: yes
         state: started
+#        state: absent
         purge_networks: yes
         networks_cli_compatible: yes
         volumes:
@@ -47,6 +57,7 @@
         restart_policy: unless-stopped
         detach: yes
         state: started
+#        state: absent
         purge_networks: yes
         networks_cli_compatible: yes
         volumes:
@@ -59,3 +70,4 @@
           WATCHTOWER_CLEANUP: "true"
         networks:
           - name: web
+
