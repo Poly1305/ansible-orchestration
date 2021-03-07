@@ -1,0 +1,96 @@
+---
+
+# Used modules
+# https://docs.ansible.com/ansible/2.6/modules/docker_container_module.html
+# https://docs.ansible.com/ansible/2.5/modules/file_module.html#file-module
+# https://docs.ansible.com/ansible/latest/collections/community/docker/docker_network_module.html#ansible-collections-community-docker-docker-network-module
+
+- name: lampstack
+  hosts: linux
+  remote_user: jeroen
+  become: true
+  tasks:
+    # Create folders
+    - name: create necessary folders
+      file:
+        path: "{{ item }}"
+        owner: jeroen
+        group: sudo
+        mode: 0755
+        state: directory
+      with_items:
+        - /home/jeroen/apache
+        - /home/jeroen/docker/mariadb
+        - /home/jeroen/docker/phpmyadmin
+
+    # Create web network
+    - name: create lamp network
+      docker_network:
+        name: lamp      
+
+    # MariaDB
+    - name: Deploy MariaDB database
+      docker_container:
+        name: mariadb
+        image: mariadb:latest
+        restart_policy: unless-stopped
+        detach: yes
+        state: started
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes:
+          - /home/jeroen/docker/mariadb:/var/lib/mysql
+        env:
+          MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+          MYSQL_DATABASE: "lamp"
+          MYSQL_USER: "lamp"
+          MYSQL_PASSWORD: "<your password here>"
+        networks:
+          - name: lamp
+
+    # Apache
+    - name: Deploy Apache webserver
+      docker_container:
+        name: apache
+        image: httpd:alpine
+        restart_policy: unless-stopped
+        detach: yes
+        state: started
+        links:
+          - mariadb:mariadb
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes:
+          - /home/jeroen/docker/apache:/usr/local/apache2/htdocs/
+        published_ports:
+          - 8080:80
+        networks:
+          - name: lamp
+
+    # PHPMyAdmin
+    - name: Deploy PHPMyAdmin
+      docker_container:
+        name: phpmyadmin
+        image: phpmyadmin:latest
+        restart_policy: unless-stopped
+        detach: yes
+        state: started
+#        state: absent
+        links:
+          - mariadb:mariadb
+        purge_networks: yes
+        networks_cli_compatible: yes
+        published_ports:
+          - 8081:80
+        env:
+          PMA_ARBITRARY: "1"
+          PMA_HOST: "mariadb"
+          PMA_PORT: "3306"
+          PMA_USER: "lamp"
+          PMA_PASSWORD: "<your password here>"
+          MYSQL_PASSWORD: "<your password here>"
+        networks:
+          - name: lamp
+
