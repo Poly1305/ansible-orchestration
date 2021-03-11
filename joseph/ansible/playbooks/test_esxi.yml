@@ -1,0 +1,84 @@
+---
+- hosts: localhost
+
+  tasks:
+    - name: Secrets
+      include_vars:
+        file: secrets.yml
+        name: secret
+
+    - name: vCenter Login
+      uri:
+        url: "https://{{secret.vcenter}}/rest/com/vmware/cis/session"
+        force_basic_auth: yes
+        method: POST
+        user: "{{secret.gebruiker}}"
+        password: "{{secret.wachtwoord}}"
+        status_code: 200
+        validate_certs: no
+      register: login
+
+
+    - name: Get Hosts from vCenter
+      uri:
+        url: https://{{secret.vcenter}}/rest/vcenter/host
+        force_basic_auth: yes
+        validate_certs: no
+        headers:
+          Cookie: "{{ login.set_cookie }}"
+      register: vchosts
+
+    - name: Print names of ESXi host system in the given vCenter
+      debug:
+        msg: "{{ item.name }}"
+      with_items: "{{ vchosts.json.value }}"
+
+
+
+    - name: Get datacenters from vCenter
+      uri:
+        url: https://{{secret.vcenter}}/rest/vcenter/datacenter
+        force_basic_auth: yes
+        validate_certs: no
+        headers:
+          Cookie: "{{ login.set_cookie }}"
+      register: vDatacenters
+
+    - name: Print names of datacenters in the given vCenter
+      debug:
+        msg: "{{ item.name }}"
+      with_items: "{{ vDatacenters.json.value }}"
+
+
+
+    - name: Get datastores from vCenter
+      uri:
+        url: https://{{secret.vcenter}}/rest/vcenter/datastore
+        force_basic_auth: yes
+        validate_certs: no
+        headers:
+          Cookie: "{{ login.set_cookie }}"
+      register: vdatastores
+
+    - name: Print names of datastores in the given vCenter
+      debug:
+        msg: "{{ item.name }}"
+      with_items: "{{ vdatastores.json.value }}"
+
+
+
+    - name: Get networks from vCenter
+      uri:
+        url: https://{{secret.vcenter}}/rest/vcenter/network
+        force_basic_auth: yes
+        validate_certs: no
+        headers:
+          Cookie: "{{ login.set_cookie }}"
+      register: vnetworks
+
+    - name: Print names of networks in the given vCenter
+      debug:
+        msg: "{{ item.name }}"
+      with_items: "{{ vnetworks.json.value }}"
+
+      

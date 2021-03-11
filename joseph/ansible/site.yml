@@ -1,0 +1,2 @@
+---
+- import_playbook: playbooks/test_esxi.yml
