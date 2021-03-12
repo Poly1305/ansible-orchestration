@@ -1,0 +1,25 @@
+---
+# Nieuwe VM van template
+- name: Nieuwe VM vanuit template
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Secrets
+      include_vars:
+        file: secrets.yml
+        name: secret
+    - name: Clone the template
+      vmware_guest:
+        hostname: vcenter.fhict-int.nl
+        username: "{{secret.gebruiker}}"
+        password: "{{secret.wachtwoord}}"
+        validate_certs: False
+        template: Templ_pfSense_2.5
+        datastore: VMDataCluster01
+        folder: _Courses/O-I2-DB-OI201/I2DBO/I2DBO003
+        datacenter: Netlab-DC
+        name: ATempl_pfSense_2.5
+        resource_pool: O-I2-DB-OI201-RP
+        state: poweredon
+        wait_for_ip_address: yes
