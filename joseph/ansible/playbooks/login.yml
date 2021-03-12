@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+
+  tasks:
+    - name: Vars
+      include_vars:
+        file: vars.yml
+        name: var
+
+    - name: vCenter Login
+      uri:
+        url: "https://{{var.vcenter}}/rest/com/vmware/cis/session"
+        force_basic_auth: yes
+        method: POST
+        user: "{{var.gebruiker}}"
+        password: "{{var.wachtwoord}}"
+        status_code: 200
+        validate_certs: no
+      register: login
+
+
+    - name: Get Hosts from vCenter
+      uri:
+        url: https://{{var.vcenter}}/rest/vcenter/host
+        force_basic_auth: yes
+        validate_certs: no
+        headers:
+          Cookie: "{{ login.set_cookie }}"
+      register: vchosts
+
+    - name: Print names of ESXi host system in the given vCenter
+      debug:
+        msg: "{{ item.name }}"
+      with_items: "{{ vchosts.json.value }}"

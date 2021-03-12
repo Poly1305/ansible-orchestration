@@ -1,3 +1,4 @@
 ---
-#- import_playbook: playbooks/test_esxi.yml
-- import_playbook: playbooks/create_test_vms.yml
+#- import_playbook: playbooks/login.yml
+#- import_playbook: playbooks/get_opertaions_examples.yml
+#- import_playbook: playbooks/create_vm_from_template.yml
