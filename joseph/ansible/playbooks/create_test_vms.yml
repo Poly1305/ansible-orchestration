@@ -1,0 +1,25 @@
+---
+# Nieuwe VM van template
+- name: Nieuwe VM vanuit template
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Vars
+      include_vars:
+        file: vars.yml
+        name: var
+    - name: Clone the template
+      vmware_guest:
+        hostname: "{{var.vcenter}}"
+        username: "{{var.gebruiker}}"
+        password: "{{var.wachtwoord}}"
+        validate_certs: False
+        template: Templ_pfSense_2.5
+        datastore: "{{var.datastore}}"
+        folder: "{{var.permissie_folderpad}}/{{var.gebruiker}}"
+        datacenter: "{{var.datacenter}}"
+        name: ATempl_pfSense_2.5
+        resource_pool: "{{var.resource_pool}}"
+        state: poweredon
+        wait_for_ip_address: yes

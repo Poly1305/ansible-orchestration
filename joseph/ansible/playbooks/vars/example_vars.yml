@@ -1,0 +1,8 @@
+---
+vcenter:  vcenter.fhict-int.nl
+gebruiker:  jouw_gebruiks_naam(zonder @FHICT.LOCAL)
+wachtwoord: jouw_wachtwoord_naam
+
+resource_pool: O-I2-DB-OI201-RP
+datastore: VMDataCluster01
+permissie_folder: _Courses/O-I2-DB-OI201/I2DBO
