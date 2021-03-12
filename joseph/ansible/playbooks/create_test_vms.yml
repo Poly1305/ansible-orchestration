@@ -5,21 +5,21 @@
   connection: local
   gather_facts: no
   tasks:
-    - name: Secrets
+    - name: Vars
       include_vars:
-        file: secrets.yml
-        name: secret
+        file: vars.yml
+        name: var
     - name: Clone the template
       vmware_guest:
-        hostname: vcenter.fhict-int.nl
-        username: "{{secret.gebruiker}}"
-        password: "{{secret.wachtwoord}}"
+        hostname: "{{var.vcenter}}"
+        username: "{{var.gebruiker}}"
+        password: "{{var.wachtwoord}}"
         validate_certs: False
         template: Templ_pfSense_2.5
-        datastore: VMDataCluster01
-        folder: _Courses/O-I2-DB-OI201/I2DBO/I2DBO003
-        datacenter: Netlab-DC
+        datastore: "{{var.datastore}}"
+        folder: "{{var.permissie_folderpad}}/{{var.gebruiker}}"
+        datacenter: "{{var.datacenter}}"
         name: ATempl_pfSense_2.5
-        resource_pool: O-I2-DB-OI201-RP
+        resource_pool: "{{var.resource_pool}}"
         state: poweredon
         wait_for_ip_address: yes
