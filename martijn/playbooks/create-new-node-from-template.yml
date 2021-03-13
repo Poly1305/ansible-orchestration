@@ -1,0 +1,21 @@
+---
+- name: Create a node from a template
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - seclab.yml
+  tasks:
+  - name: Clone the template
+    vmware_guest:
+      hostname: "{{ hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: False
+      name: "{{ name_prefix }} {{ name }}"
+      template: "{{ template }}"
+      datacenter: "{{ datacenter }}"
+      datastore: "{{ datastore }}"
+      folder: "{{ folder }}"
+      resource_pool: "{{ resource_pool }}"
+      state: present
