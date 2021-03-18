@@ -1,0 +1,14 @@
+---
+# Deploy all the things!
+- include: playbooks/create_watchtower_node.yml
+- include: playbooks/create_ubuntu_webserver_node.yml
+- include: playbooks/create_alpine_database_node.yml
+- include: playbooks/create_windows_jumpbox_node.yml
+
+# Configuring Watchtower node
+- include: playbooks/configure_watchtower_node.yml
+
+# Configuring the individual nodes (Done by the Watchtower node)
+#- include: playbooks/configure_ubuntu_webserver_node.yml
+#- include: playbooks/configure_alpine_database_node.yml
+#- include: playbooks/configure_windows_jumpbox_node.yml
