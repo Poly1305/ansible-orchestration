@@ -1,0 +1,73 @@
+---
+
+# Used modules
+# https://docs.ansible.com/ansible/2.6/modules/docker_container_module.html
+# https://docs.ansible.com/ansible/2.5/modules/file_module.html#file-module
+
+- name: deploydocker
+  hosts: linux
+  remote_user: jeroen
+  become: true
+  tasks:
+    # Create folders
+    - name: create necessary folders
+      file:
+        path: "{{ item }}"
+        owner: jeroen
+        group: sudo
+        mode: 0755
+        state: directory
+      with_items:
+        - /home/jeroen/docker
+        - /home/jeroen/docker/portainer
+        - /home/jeroen/docker/portainer/data
+        - /home/jeroen/docker/watchtower
+
+    # Create web network
+    - name: create web network
+      docker_network:
+        name: web      
+
+    # Portainer
+    - name: laungh portainer container
+      docker_container:
+        name: portainer
+        image: portainer/portainer-ce
+        restart_policy: unless-stopped
+        detach: yes
+        state: started
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /home/jeroen/docker/portainer/data:/data
+        published_ports:
+          - 8000:8000
+          - 9000:9000
+        networks:
+          - name: web
+
+    # Watchtower
+    - name: laungh watchtower container
+      docker_container:
+        name: watchtower
+        image: containrrr/watchtower:latest
+        restart_policy: unless-stopped
+        detach: yes
+        state: started
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        env:
+          TZ: "Europe/Amsterdam"
+          WATCHTOWER_POLL_INTERVAL: "86400"
+          WATCHTOWER_INCLUDE_STOPPED: "true"
+          WATCHTOWER_DEBUG: "true"
+          WATCHTOWER_CLEANUP: "true"
+          
+        networks:
+          - name: web
+

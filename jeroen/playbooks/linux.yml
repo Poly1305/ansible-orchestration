@@ -1,0 +1,7 @@
+---
+- name: pinglinux
+  hosts: linux
+  remote_user: jeroen
+  become: yes
+  tasks:
+    - ping:   

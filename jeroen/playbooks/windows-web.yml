@@ -1,0 +1,20 @@
+---
+- name: pingwindows
+  hosts: windows
+  remote_user: student
+  become: yes
+  become_user: student
+  become_method: runas
+  gather_facts: no
+  tasks:
+    - name: Installeer IIS webserver met features en management tools
+      win_feature:
+        name: Web-Server
+        state: present
+        include_sub_features: yes
+        include_management_tools: yes
+      register: win_feature
+   
+    - name: Herstart server wanneer dit nodig is voor het installeren van de webserver
+      win_reboot:
+      when: win_feature.reboot_required  

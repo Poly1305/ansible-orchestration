@@ -1,0 +1,13 @@
+---
+- name: pingwindows
+  hosts: windows
+  remote_user: student
+  become: yes
+  become_user: student
+  become_method: runas
+  tasks:
+    - name: Installeer Chocolatey op Windows 10
+      win_chocolatey:
+        name: procexp
+        state: present  
+#        state: absent

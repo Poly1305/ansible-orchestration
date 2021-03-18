@@ -1,0 +1,13 @@
+---
+- name: rebootwindows
+  hosts: windows
+  remote_user: student
+  become: yes
+  become_user: student
+  become_method: runas
+  gather_facts: no
+  tasks:
+    - name: Herstart Windows
+      win_reboot:
+        reboot_timeout: 3
+  

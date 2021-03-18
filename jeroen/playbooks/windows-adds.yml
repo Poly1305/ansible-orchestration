@@ -1,0 +1,28 @@
+---
+- name: install-adds
+  hosts: windows
+  remote_user: student
+  become: yes
+  become_user: student
+  become_method: runas
+  gather_facts: no
+  tasks:
+    - name: Installeer ADDS
+      win_feature:
+        name: AD-Domain-Services
+        state: present
+        include_sub_features: yes
+        include_management_tools: yes
+      register: win_feature
+    
+    - name: Installer DNS
+      win_feature:
+        name: DNS
+        state: present
+        include_sub_features: yes
+        include_management_tools: yes
+      register: win_feature
+   
+    - name: Herstart server wanneer dit nodig is voor het installeren van de rol/feature
+      win_reboot:
+      when: win_feature.reboot_required  

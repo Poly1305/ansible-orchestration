@@ -1,0 +1,10 @@
+---
+- name: pingwindows
+  hosts: windows
+  remote_user: student
+  become: yes
+  become_user: student
+  become_method: runas
+  gather_facts: no
+  tasks:
+    - win_ping:  
