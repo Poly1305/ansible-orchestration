@@ -1,19 +1,19 @@
 ---
-- name: Watchtower
+- name: Database node
   hosts: localhost
   connection: local
   gather_facts: no
   vars_files:
     - seclab.yml
   tasks:
-  - name: Deploy watchtower node from Ubuntu Server 20.04 template
+  - name: Deploy database node from Linux Alpine template
     vmware_guest:
       hostname: "{{ hostname }}"
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} Watchtower"
-      template: "Netlab-DC/vm/_Templates/Various/Templ_Ubuntu_Server_20.04"
+      name: "{{ name_prefix }} N2-DATABASE"
+      template: "Templ_Alpine_Linux_3.13.2"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
       folder: "{{ folder }}"

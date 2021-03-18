@@ -1,19 +1,19 @@
 ---
-- name: Watchtower
+- name: Deploy jumpbox
   hosts: localhost
   connection: local
   gather_facts: no
   vars_files:
     - seclab.yml
   tasks:
-  - name: Deploy watchtower node from Ubuntu Server 20.04 template
+  - name: Deploy Windows jumpbox from Windows Server 2019 template
     vmware_guest:
       hostname: "{{ hostname }}"
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} Watchtower"
-      template: "Netlab-DC/vm/_Templates/Various/Templ_Ubuntu_Server_20.04"
+      name: "{{ name_prefix }} N3-JUMPBOX"
+      template: "Templ_Server2019_Std_1809"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
       folder: "{{ folder }}"

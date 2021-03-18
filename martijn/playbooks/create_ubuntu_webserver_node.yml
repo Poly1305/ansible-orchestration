@@ -1,18 +1,18 @@
 ---
-- name: Watchtower
+- name: Webserver node
   hosts: localhost
   connection: local
   gather_facts: no
   vars_files:
     - seclab.yml
   tasks:
-  - name: Deploy watchtower node from Ubuntu Server 20.04 template
+  - name: Deploy webserver node from Ubuntu Server 20.04 template
     vmware_guest:
       hostname: "{{ hostname }}"
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} Watchtower"
+      name: "{{ name_prefix }} N1-WEBSERVER"
       template: "Netlab-DC/vm/_Templates/Various/Templ_Ubuntu_Server_20.04"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
