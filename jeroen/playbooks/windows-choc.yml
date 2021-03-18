@@ -1,12 +1,12 @@
 ---
-- name: pingwindows
+- name: install-chocolate
   hosts: windows
   remote_user: student
   become: yes
   become_user: student
   become_method: runas
   tasks:
-    - name: Installeer Chocolatey op Windows 10
+    - name: Installeer Chocolatey op Windows Server
       win_chocolatey:
         name: procexp
         state: present  

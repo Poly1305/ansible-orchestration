@@ -1,5 +1,5 @@
 ---
-- name: pingwindows
+- name: install-webserver
   hosts: windows
   remote_user: student
   become: yes
