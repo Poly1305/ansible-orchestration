@@ -1,6 +1,8 @@
 
 # Windows voorbereidingen
 
+## Installeer OpenSSH server
+
 1. Installeer OpenSSH server op Windows
 
 ```Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0```
@@ -13,6 +15,18 @@
 
 ```Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'```
 
+### Voeg Public key toe aan **authorized_keys**
+
+1. Maak .ssh folder aan op de node (als deze nog niet bestaat)
+
+2. Kopieer de Public key naar de node
+
+```scp ~/.ssh/id_rsa.pub <username>@<ip-adres>:/c:/users/<username>/.ssh/uploaded_key.pub```
+
+3. Voeg de Public key toe aan het **authorized_keys** bestand
+
+```cat .ssh/uploaded_key.pub >> .ssh/authorized_keys```
+
 
 # Modules
 
@@ -24,9 +38,9 @@
 ---
 - name: install-hyperv
   hosts: windows
-  remote_user: <username>
+  remote_user: <gebruikersnaam>
   become: yes
-  become_user: <username>
+  become_user: <gebruikersnaam>
   become_method: runas
   gather_facts: no
   tasks:
@@ -56,9 +70,9 @@
 ---
 - name: rebootwindows
   hosts: windows
-  remote_user: <username>
+  remote_user: <gebruikersnaam>
   become: yes
-  become_user: <username>
+  become_user: <gebruikersnaam>
   become_method: runas
   gather_facts: no
   tasks:
