@@ -4,14 +4,16 @@
 1. Installeer OpenSSH server op Windows
 ```Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0```
 
-2. Start de OpenSSH server 
+2. Start de OpenSSH server
+
 ```Start-Service sshd```
 
 3. Controleer of de OpenSSH server is geinstalleerd
+
 ```Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'```
 
-# Modules
 
+# Modules
 
 ## Windows Features
 [Ansible win_feature](https://docs.ansible.com/ansible/2.8/modules/win_feature_module.html)
@@ -39,7 +41,7 @@
 ## Windows Reboot
 [Ansible module win_reboot](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_reboot_module.html)
 
-### Voorbeeld van herstarten na installeren rol/feature (In PLaybook)
+### Voorbeeld van herstarten na installeren rol/feature (In Playbook)
 
 ```
 - name: Herstart server wanneer dit nodig is voor het installeren van de rol/feature
