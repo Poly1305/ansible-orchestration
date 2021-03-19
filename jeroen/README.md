@@ -15,8 +15,9 @@
   * [win_reboot](#windows-reboot)
   * [win_ping](#windows-ping)
   * [win_domain_controller](#windows-domain-controller)
-* [Ansible Linux Hosts](#ansible-linux-hosts)
-* [# Ansible Windows Hosts](#ansible-windows-hosts)
+* [Ansible Hosts](#ansible-hosts)
+  * [Ansible Linux Hosts](#ansible-linux-hosts)
+  * [# Ansible Windows Hosts](#ansible-windows-hosts)
 * [Ansible config](https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/ansible.cfg)
 * [Ansible Playbooks](https://github.com/Poly1305/ansible-orchestration/tree/master/jeroen/playbooks)
 
@@ -197,7 +198,9 @@ Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de 
 [Module win_domain_controller](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_domain_controller_module.html)
 
 
-# Ansible Linux Hosts
+# Ansible Hosts
+
+## Ansible Linux hosts
 
 Linux servers en computers in Ansible host-lijst
 
@@ -211,7 +214,7 @@ Linux servers en computers in Ansible host-lijst
 ansible_user=<username>
 ```
 
-# Ansible Windows Hosts
+## Ansible Windows hosts
 
 Windows servers en computers in Ansible host-lijst
 
