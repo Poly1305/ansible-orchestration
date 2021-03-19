@@ -1,3 +1,13 @@
+# Inhoudsopgave
+
+* [Windows voorbereidingen](#windows-voorbereidingen)
+  * [Installeer OpenSSH server](#installeer-openssh-server)
+  * [Voeg de Public key toe aan authorized_keys](#voeg-de-public-key-toe-aan-authorized_keys)
+* [Ansible Modules](#modules)
+  * [win_feature](#windows-features)
+  * [win_reboot](#windows-reboot)
+  * [win_ping](#windows-ping)
+
 
 # Windows voorbereidingen
 
