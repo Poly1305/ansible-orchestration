@@ -15,7 +15,8 @@
   * [win_reboot](#windows-reboot)
   * [win_ping](#windows-ping)
   * [win_domain_controller](#windows-domain-controller)
-* [Ansible hosts](https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/hosts)
+* [Ansible Linux Hosts](#ansible-linux-hosts)
+* [# Ansible Windows Hosts](#ansible-windows-hosts)
 * [Ansible config](https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/ansible.cfg)
 * [Ansible Playbooks](https://github.com/Poly1305/ansible-orchestration/tree/master/jeroen/playbooks)
 
@@ -196,9 +197,23 @@ Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de 
 [Module win_domain_controller](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_domain_controller_module.html)
 
 
+# Ansible Linux Hosts
+
+Linux servers en computers in Ansible host-lijst
+
+```
+[linux]
+192.168.56.236
+192.168.56.237
+192.168.56.238
+
+[linux:vars]
+ansible_user=<username>
+```
+
 # Ansible Windows Hosts
 
-Windows servers en computers in Ansible hostlijst
+Windows servers en computers in Ansible host-lijst
 
 ```
 [windows]
@@ -208,5 +223,8 @@ Windows servers en computers in Ansible hostlijst
 ansible_user=<username>
 ansible_password=<password>
 ansible_connection=ssh
+ansible_ssh_port=22
 ansible_shell_type=<cmd or powershell>
 ```
+
+De variabele **ansible_shell_type** moet de DefaultShell weegeven die op de Windows-host is geconfigureerd. Stel in op **cmd** voor de standaardshell of stel in op **powershell** als de DefaultShell is gewijzigd in PowerShell. 
