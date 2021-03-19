@@ -97,6 +97,14 @@ Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de 
 
 ```Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'```
 
+3. Start OpenSSH server automatisch bij het opstarten van Windows
+
+```Set-Service -Name sshd -StartupType 'Automatic'```
+
+4. Pas de Firewall aan voor OpenSSH server
+
+```New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22```
+
 ## Voeg de Public key toe aan authorized_keys
 
 1. Maak .ssh folder aan op de node (als deze nog niet bestaat)
