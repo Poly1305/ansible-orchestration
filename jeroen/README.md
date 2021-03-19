@@ -128,3 +128,6 @@
   tasks:
     - win_ping:  
 ```
+
+## Windows Domain Controller
+[Module win_domain_controller](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_domain_controller_module.html)
