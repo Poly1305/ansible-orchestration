@@ -15,7 +15,7 @@
 
 ```Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'```
 
-### Voeg Public key toe aan **authorized_keys**
+### Voeg de Public key toe aan authorized_keys
 
 1. Maak .ssh folder aan op de node (als deze nog niet bestaat)
 
@@ -31,9 +31,9 @@
 # Modules
 
 ## Windows Features
-[Ansible win_feature](https://docs.ansible.com/ansible/2.8/modules/win_feature_module.html)
+[Module win_feature](https://docs.ansible.com/ansible/2.8/modules/win_feature_module.html)
 
-### Voorbeeld YAML
+### Voorbeeld Playbook
 ```
 ---
 - name: install-hyperv
@@ -54,7 +54,7 @@
 ```
 
 ## Windows Reboot
-[Ansible module win_reboot](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_reboot_module.html)
+[Module win_reboot](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_reboot_module.html)
 
 ### Voorbeeld van herstarten na installeren rol/feature (In Playbook)
 
@@ -79,4 +79,25 @@
     - name: Herstart Windows
       win_reboot:
         reboot_timeout: 3
+```
+
+## Windows Ping
+[Module win_ping](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_ping_module.html)
+
+### Voorbeeld van win_ping in Ansible syntax
+```ansible -m win_ping <hosts>```
+
+
+### Voorbeeld van win_ping in Playbook
+```
+---
+- name: ping-windows
+  hosts: windows
+  remote_user: <gebruikersnaam>
+  become: yes
+  become_user: <gebruikersnaam>
+  become_method: runas
+  gather_facts: yes
+  tasks:
+    - win_ping:  
 ```
