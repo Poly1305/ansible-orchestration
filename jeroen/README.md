@@ -7,6 +7,8 @@
   * [win_feature](#windows-features)
   * [win_reboot](#windows-reboot)
   * [win_ping](#windows-ping)
+* [Ansible hosts](link)
+* [Ansible config](https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/ansible.cfg)
 
 
 # Windows voorbereidingen
