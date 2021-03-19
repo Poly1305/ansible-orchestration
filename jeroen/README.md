@@ -2,6 +2,7 @@
 # Windows voorbereidingen
 
 1. Installeer OpenSSH server op Windows
+
 ```Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0```
 
 2. Start de OpenSSH server
