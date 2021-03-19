@@ -2,13 +2,13 @@
 
 * [Ansible voorbereidingen](#ansible-voorbereidingen)
 * [Linux voorbereidingen](#linux-voorbereidingen)
-  * [Installeer OpenSSH server](#installeer-openssh-server)
+  * [Installeer OpenSSH server](#installeer-openssh-server-linux)
   * [Voeg de Public key toe aan authorized_keys](#voeg-de-public-key-toe-aan-authorized_keys)
   * [Uitvoeren sudo zonder wachtwoord](#uitvoeren-sudo-zonder-wachtwoord)
     * [Groep sudo zonder wachtwoord](#groep-sudo-zonder-wachtwoord)
     * [Gebruiker sudo zonder wachtwoord](#gebruiker-sudo-zonder-wachtwoord)
 * [Windows voorbereidingen](#windows-voorbereidingen)
-  * [Installeer OpenSSH server](#installeer-openssh-server)
+  * [Installeer OpenSSH server](#installeer-openssh-server-windows)
   * [Voeg de Public key toe aan authorized_keys](#voeg-de-public-key-toe-aan-authorized_keys)
 * [Ansible Modules](#modules)
   * [win_feature](#windows-features)
@@ -17,11 +17,12 @@
   * [win_domain_controller](#windows-domain-controller)
 * [Ansible hosts](https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/hosts)
 * [Ansible config](https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/ansible.cfg)
+* [Ansible Playbooks](https://github.com/Poly1305/ansible-orchestration/tree/master/jeroen/playbooks)
 
 
 # Linux Voorbereidingen
 
-## Installeer OpenSSH server
+## Installeer OpenSSH server Linux
 
 1. Installeer Open SSH server op Linux
 
@@ -82,7 +83,7 @@ Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de 
 
 # Windows voorbereidingen
 
-## Installeer OpenSSH server
+## Installeer OpenSSH server Windows
 
 1. Installeer OpenSSH server op Windows
 
@@ -185,3 +186,19 @@ Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de 
 
 ## Windows Domain Controller
 [Module win_domain_controller](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_domain_controller_module.html)
+
+
+# Ansible Windows Hosts
+
+Windows servers en computers in Ansible hostlijst
+
+```
+[windows]
+192.168.56.239
+
+[windows:vars]
+ansible_user=<username>
+ansible_password=<password>
+ansible_connection=ssh
+ansible_shell_type=<cmd or powershell>
+```
