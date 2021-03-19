@@ -2,6 +2,11 @@
 
 * [Ansible voorbereidingen](#ansible-voorbereidingen)
 * [Linux voorbereidingen](#linux-voorbereidingen)
+  * [Installeer OpenSSH server](#installeer-openssh-server)
+  * [Voeg de Public key toe aan authorized_keys](#voeg-de-public-key-toe-aan-authorized_keys)
+  * [Uitvoeren sudo zonder wachtwoord](#uitvoeren-sudo-zonder-wachtwoord)
+    * [Groep sudo zonder wachtwoord](#groep-sudo-zonder-wachtwoord)
+    * [Gebruiker sudo zonder wachtwoord](#gebruiker-sudo-zonder-wachtwoord)
 * [Windows voorbereidingen](#windows-voorbereidingen)
   * [Installeer OpenSSH server](#installeer-openssh-server)
   * [Voeg de Public key toe aan authorized_keys](#voeg-de-public-key-toe-aan-authorized_keys)
@@ -45,7 +50,7 @@
 ## Uitvoeren sudo zonder wachtwoord
 Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de node. Omdat het niet verstandig is om een wachtwoord op te nemen in de Playbook (deze wordt namelijk gedeeld via GitHub) moet de groep van de gebruiker of de gebruiker zo ingesteld worden dat er geen wachtwoord nodig is voor het uitvoeren van een sudo commando. Via de volgende stappen is dit in te stellen voor een groep of afzonderlijke gebruiker. Het bestand wat aangepast gaat worden is terug te vinden op **/etc/sudoers**.
 
-### Gebruiker sudo zonder wachtwoord
+### Groep sudo zonder wachtwoord
 
 1. Open het bestand /etc/sudoers
 
@@ -60,7 +65,7 @@ Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de 
 3. Voor gebruikers in de ingevoerde groep is het niet meer nodig om het wachtwoord op te geven bij het uitvoeren van het **sudo** commando
 
 
-### Groep sudo zonder wachtwoord
+### Gebruiker sudo zonder wachtwoord
 
 1. Open het bestand /etc/sudoers
 
