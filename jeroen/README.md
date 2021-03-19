@@ -17,7 +17,7 @@
   * [win_domain_controller](#windows-domain-controller)
 * [Ansible Hosts](#ansible-hosts)
   * [Ansible Linux Hosts](#ansible-linux-hosts)
-  * [# Ansible Windows Hosts](#ansible-windows-hosts)
+  * [Ansible Windows Hosts](#ansible-windows-hosts)
 * [Ansible config](https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/ansible.cfg)
 * [Ansible Playbooks](https://github.com/Poly1305/ansible-orchestration/tree/master/jeroen/playbooks)
 
