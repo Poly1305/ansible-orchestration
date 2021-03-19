@@ -42,8 +42,8 @@
 
 ```cat ~/.ssh/uploaded_key.pub >> ~/.ssh/authorized_keys```
 
-## Voeg de gebruiker toe aan de groep zonder sudo
-Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de node. Omdat het niet verstandig is om een wachtwoord op te nemen in de Playbook (deze wordt namelijk gedeeld via GitHub) moet de groep van de gebruiker of de gebruiker zo ingesteld worden dat er geen wachtwoord nodig is voor het uitvoern van een sudo commando. Via de volgende stappen is dit in te stellen voor een groep of afzonderlijke gebruiker. Het bestand wat aangepast gaat worden is terug te vinden op **/etc/sudoers**.
+## Uitvoeren sudo zonder wachtwoord
+Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de node. Omdat het niet verstandig is om een wachtwoord op te nemen in de Playbook (deze wordt namelijk gedeeld via GitHub) moet de groep van de gebruiker of de gebruiker zo ingesteld worden dat er geen wachtwoord nodig is voor het uitvoeren van een sudo commando. Via de volgende stappen is dit in te stellen voor een groep of afzonderlijke gebruiker. Het bestand wat aangepast gaat worden is terug te vinden op **/etc/sudoers**.
 
 ### Gebruiker sudo zonder wachtwoord
 
@@ -55,7 +55,6 @@ Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de 
 
 ```
 %<naam van de groep> ALL=ALL(ALL:ALL) NOPASSWD:ALL
-
 ```
 
 3. Voor gebruikers in de ingevoerde groep is het niet meer nodig om het wachtwoord op te geven bij het uitvoeren van het **sudo** commando
