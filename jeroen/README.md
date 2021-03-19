@@ -9,6 +9,7 @@
   * [win_feature](#windows-features)
   * [win_reboot](#windows-reboot)
   * [win_ping](#windows-ping)
+  * [win_domain_controller](#windows-domain-controller)
 * [Ansible hosts](https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/hosts)
 * [Ansible config](https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/ansible.cfg)
 
@@ -23,7 +24,6 @@
 
 ## Voeg de gebruiker toe aan de groep zonder sudo
 ....
-
 
 
 # Windows voorbereidingen
