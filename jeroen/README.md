@@ -161,7 +161,7 @@ Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de 
 
 ### Voorbeeld Playbook
 
-Maak het **web** netwerk aan voor gebruik in de [docker_container module](docker-container)
+Maak het **web** netwerk aan voor gebruik in de [docker_container module](#docker-container)
 ```
 # Create web network
 - name: create web network
