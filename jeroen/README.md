@@ -10,7 +10,10 @@
 * [Windows voorbereidingen](#windows-voorbereidingen)
   * [Installeer OpenSSH server](#installeer-openssh-server-windows)
   * [Voeg de Public key toe aan authorized_keys](#voeg-de-public-key-toe-aan-authorized_keys)
-* [Ansible Modules](#modules)
+* [Ansible Linux Modules](#linux-modules)
+  * [docker_container](#docker-container)
+  * [docker_network](#docker-network)
+* [Ansible Windows Modules](#windows-modules)
   * [win_feature](#windows-features)
   * [win_reboot](#windows-reboot)
   * [win_ping](#windows-ping)
@@ -119,8 +122,55 @@ Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de 
 
 ```cat .ssh/uploaded_key.pub >> .ssh/authorized_keys```
 
+# Ansible Linux Modules
 
-# Modules
+## Docker Container
+[Module docker_container](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html)
+
+### Voorbeeld Playbook (Watchtower)
+```
+# Watchtower
+- name: laungh watchtower container
+    docker_container:
+      name: watchtower
+      image: containrrr/watchtower:latest
+      restart_policy: unless-stopped
+      detach: yes
+      state: started
+#     state: absent
+      purge_networks: yes
+      networks_cli_compatible: yes
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+      env:
+        TZ: "Europe/Amsterdam"
+        WATCHTOWER_POLL_INTERVAL: "3600"
+        WATCHTOWER_INCLUDE_STOPPED: "true"
+        WATCHTOWER_DEBUG: "true"
+        WATCHTOWER_CLEANUP: "true"
+        WATCHTOWER_NOTIFICATIONS: "shoutrrr"
+        WATCHTOWER_NOTIFICATION_URL: "telegram://<bot-token>@<bot-username>?channels=@<channel-name>"
+        WATCHTOWER_MONITOR_ONLY: "true"
+        WATCHTOWER_REVIVE_STOPPED: "true"
+      networks:
+        - name: web
+```
+
+## Docker Network
+[Module docker_network]https://docs.ansible.com/ansible/2.3/docker_network_module.html
+
+### Voorbeeld Playbook
+
+Maak het **web** netwerk aan voor gebruik in de [docker_container module](docker-container)
+```
+# Create web network
+- name: create web network
+    docker_network:
+      name: web      
+
+```
+
+# Ansible Windows Modules
 
 ## Windows Features
 [Module win_feature](https://docs.ansible.com/ansible/2.8/modules/win_feature_module.html)
