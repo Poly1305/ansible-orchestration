@@ -15,7 +15,7 @@
 
 ```Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'```
 
-### Voeg de Public key toe aan authorized_keys
+## Voeg de Public key toe aan authorized_keys
 
 1. Maak .ssh folder aan op de node (als deze nog niet bestaat)
 
