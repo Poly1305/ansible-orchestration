@@ -1,0 +1,22 @@
+---
+
+- name: apache-install
+  hosts: linux
+  remote_user: node1
+  become: yes
+  become_user: node1
+#  become_method: sudo
+  tasks:
+#    - name: pingen hosts
+#      ping:
+    - name: nano installeren
+      apt:
+        update_cache: yes
+#        name: nano
+#        state: latest
+#    - name: create /var/lib/apt/lists/
+#      file:
+#        path: /var/lib/apt/lists/
+#        state: directory
+#        mode: '0755'
+#        check_mode: no
