@@ -56,7 +56,7 @@ Ansible Configuratie
 
 .. External links
 
-.. `Ansible configuratie`: https://raw.githubusercontent.com/Poly1305/ansible-orchestration/master/jeroen/ansible-config/ansible.cfg?token=AB26NXZCVTJ644EHNTGQD5DAL4MCW
+.. _`Ansible configuratie`: https://raw.githubusercontent.com/Poly1305/ansible-orchestration/master/jeroen/ansible-config/ansible.cfg?token=AB26NX7P6XIEUJULLQFSKV3AL46OE
 
 
 .. Indices and tables
