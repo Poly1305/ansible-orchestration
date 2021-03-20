@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Linux voorbereidingen &mdash; Ansible Orchestration v1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Windows voorbereidingen" href="windows-voorbereidingen.html" />
+    <link rel="prev" title="Ansible voorbereidingen" href="ansible-voorbereidingen.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Ansible Orchestration
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Voorbereidingen:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ansible-voorbereidingen.html">Ansible voorbereidingen</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Linux voorbereidingen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installeer-openssh-server-linux">Installeer OpenSSH server Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#voeg-de-public-key-toe-aan-authorized-keys">Voeg de Public key toe aan authorized_keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uitvoeren-sudo-zonder-wachtwoord">Uitvoeren sudo zonder wachtwoord</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#groep-sudo-zonder-wachtwoord">Groep sudo zonder wachtwoord</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gebruiker-sudo-zonder-wachtwoord">Gebruiker sudo zonder wachtwoord</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="windows-voorbereidingen.html">Windows voorbereidingen</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Ansible Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Linux modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#windows-modules">Windows modules</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ansible Orchestration</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Linux voorbereidingen</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="linux-voorbereidingen">
+<h1>Linux voorbereidingen<a class="headerlink" href="#linux-voorbereidingen" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installeer-openssh-server-linux">
+<h2>Installeer OpenSSH server Linux<a class="headerlink" href="#installeer-openssh-server-linux" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Installeer Open SSH server op Linux</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">openssh</span><span class="o">-</span><span class="n">server</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Start OpenSSH server</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">sshd</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Controleer of de OpenSSH server actief is</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="ow">is</span><span class="o">-</span><span class="n">enabled</span> <span class="n">sshd</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="voeg-de-public-key-toe-aan-authorized-keys">
+<h2>Voeg de Public key toe aan authorized_keys<a class="headerlink" href="#voeg-de-public-key-toe-aan-authorized-keys" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Maak .ssh folder aan op de node (als deze nog niet bestaat)</p></li>
+<li><p>Kopieer de Public key naar de node</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;@&lt;</span><span class="n">ip</span><span class="o">-</span><span class="n">adres</span><span class="o">&gt;</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/&lt;</span><span class="n">username</span><span class="o">&gt;/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">uploaded_key</span><span class="o">.</span><span class="n">pub</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Voeg de Public key toe aan het <strong>authorized_keys</strong> bestand</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">uploaded_key</span><span class="o">.</span><span class="n">pub</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">authorized_keys</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uitvoeren-sudo-zonder-wachtwoord">
+<h2>Uitvoeren sudo zonder wachtwoord<a class="headerlink" href="#uitvoeren-sudo-zonder-wachtwoord" title="Permalink to this headline">¶</a></h2>
+<p>Voor het uitvoeren van een Playbook zijn vaak administrator rechten nodig op de node. Omdat het niet verstandig is om een wachtwoord op te nemen in de Playbook (deze wordt namelijk gedeeld via GitHub) moet de groep van de gebruiker of de gebruiker zo ingesteld worden dat er geen wachtwoord nodig is voor het uitvoeren van een sudo commando. Via de volgende stappen is dit in te stellen voor een groep of afzonderlijke gebruiker. Het bestand wat aangepast gaat worden is terug te vinden op <strong>/etc/sudoers</strong>.</p>
+<div class="section" id="groep-sudo-zonder-wachtwoord">
+<h3>Groep sudo zonder wachtwoord<a class="headerlink" href="#groep-sudo-zonder-wachtwoord" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Open het bestand /etc/sudoers</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">visudo</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Voeg de volgende regel toe aan het bestand</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%&lt;</span><span class="n">naam</span> <span class="n">van</span> <span class="n">de</span> <span class="n">groep</span><span class="o">&gt;</span> <span class="n">ALL</span><span class="o">=</span><span class="n">ALL</span><span class="p">(</span><span class="n">ALL</span><span class="p">:</span><span class="n">ALL</span><span class="p">)</span> <span class="n">NOPASSWD</span><span class="p">:</span><span class="n">ALL</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Voor gebruikers in de ingevoerde groep is het niet meer nodig om het wachtwoord op te geven bij het uitvoeren van het <strong>sudo</strong> commando</p></li>
+</ol>
+</div>
+<div class="section" id="gebruiker-sudo-zonder-wachtwoord">
+<h3>Gebruiker sudo zonder wachtwoord<a class="headerlink" href="#gebruiker-sudo-zonder-wachtwoord" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Open het bestand /etc/sudoers</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">visudo</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Voeg de volgende regel toe aan het bestand</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">gebruikersnaam</span><span class="o">&gt;</span> <span class="n">ALL</span><span class="o">=</span><span class="n">ALL</span><span class="p">(</span><span class="n">ALL</span><span class="p">:</span><span class="n">ALL</span><span class="p">)</span> <span class="n">NOPASSWD</span><span class="p">:</span><span class="n">ALL</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Voor de ingevoerde gebruiker is het niet meer nodig om het wachtwoord op te geven bij het uitvoeren van het <strong>sudo</strong> commando</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="windows-voorbereidingen.html" class="btn btn-neutral float-right" title="Windows voorbereidingen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ansible-voorbereidingen.html" class="btn btn-neutral float-left" title="Ansible voorbereidingen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Jeroen Brauns
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
