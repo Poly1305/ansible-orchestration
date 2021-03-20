@@ -4,4 +4,4 @@ Automatiseren van het inrichten, updaten en bijwerken van (server)infrastructuur
 
 # Documentatie
 
-[Documentatie Jeroen](https://switchit.me/ansible-orchestration/index.html)
+[Documentatie Jeroen](https://switchit.me/ansible-orchestration/index.html){:target="_blank" rel="noopener"}
