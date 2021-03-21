@@ -53,11 +53,16 @@ Ansible Configuratie
    ansible-hosts.rst
    
 
+Playbooks
+=========
+
+`Playbooks Jeroen`_
 
 .. External links
 
 .. _`Ansible configuratie`: https://raw.githubusercontent.com/Poly1305/ansible-orchestration/master/jeroen/ansible-config/ansible.cfg?token=AB26NX7P6XIEUJULLQFSKV3AL46OE
 
+.. _`Playbooks Jeroen`: https://github.com/Poly1305/ansible-orchestration/tree/master/jeroen/playbooks
 
 .. Indices and tables
 .. ==================

@@ -92,12 +92,28 @@
 <p class="caption"><span class="caption-text">Ansible Modules:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Linux modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#docker-container">Docker Container</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-docker-container">Module Docker Container</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#voorbeeld-playbook-watchtower">Voorbeeld Playbook (Watchtower)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#docker-network">Docker Network</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-docker-network">Module Docker Network</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#voorbeeld-playbook">Voorbeeld Playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-file">Module File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Voorbeeld Playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-apt">Module APT</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeelden">Voorbeelden</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-command">Module Command</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Voorbeelden</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-get-url">Module Get URL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Voorbeeld Playbook</a></li>
 </ul>
 </li>
 </ul>
@@ -171,12 +187,12 @@
             
   <div class="section" id="linux-modules">
 <h1>Linux modules<a class="headerlink" href="#linux-modules" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="docker-container">
-<span id="module-docker-container"></span><h2>Docker Container<a class="headerlink" href="#docker-container" title="Permalink to this headline">¶</a></h2>
-<p>Module <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html">docker_container</a></p>
+<div class="section" id="module-docker-container">
+<span id="id1"></span><h2>Module Docker Container<a class="headerlink" href="#module-docker-container" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html">docker_container</a></p>
 <div class="section" id="voorbeeld-playbook-watchtower">
 <h3>Voorbeeld Playbook (Watchtower)<a class="headerlink" href="#voorbeeld-playbook-watchtower" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watchtower</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watchtower</span>
 <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">laungh</span> <span class="n">watchtower</span> <span class="n">container</span>
     <span class="n">docker_container</span><span class="p">:</span>
       <span class="n">name</span><span class="p">:</span> <span class="n">watchtower</span>
@@ -205,16 +221,100 @@
 </div>
 </div>
 </div>
-<div class="section" id="docker-network">
-<h2>Docker Network<a class="headerlink" href="#docker-network" title="Permalink to this headline">¶</a></h2>
-<p>Module <a class="reference external" href="https://docs.ansible.com/ansible/2.3/docker_network_module.html">docker_network</a></p>
+<div class="section" id="module-docker-network">
+<h2>Module Docker Network<a class="headerlink" href="#module-docker-network" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.ansible.com/ansible/2.3/docker_network_module.html">docker_network</a></p>
 <div class="section" id="voorbeeld-playbook">
 <h3>Voorbeeld Playbook<a class="headerlink" href="#voorbeeld-playbook" title="Permalink to this headline">¶</a></h3>
-<p>Maak het <strong>web</strong> netwerk aan voor gebruik in de <a class="reference internal" href="#module-docker-container"><span class="std std-ref">Docker Container</span></a> module</p>
+<p>Maak het <strong>web</strong> netwerk aan voor gebruik in de <a class="reference internal" href="#module-docker-container"><span class="std std-ref">Module Docker Container</span></a> module</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create web network</span>
 <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">create</span> <span class="n">web</span> <span class="n">network</span>
-    <span class="n">docker_network</span><span class="p">:</span>
-      <span class="n">name</span><span class="p">:</span> <span class="n">web</span>
+  <span class="n">docker_network</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">web</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="module-file">
+<h2>Module File<a class="headerlink" href="#module-file" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html">file</a></p>
+<div class="section" id="id2">
+<h3>Voorbeeld Playbook<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Maak een aantal folders aan</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">create</span> <span class="n">necessary</span> <span class="n">folders</span>
+  <span class="n">file</span><span class="p">:</span>
+    <span class="n">path</span><span class="p">:</span> <span class="s2">&quot;{{ item }}&quot;</span>
+    <span class="n">owner</span><span class="p">:</span> <span class="n">user</span>
+    <span class="n">group</span><span class="p">:</span> <span class="n">sudo</span>
+    <span class="n">mode</span><span class="p">:</span> <span class="mi">0755</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">directory</span>
+  <span class="n">with_items</span><span class="p">:</span>
+    <span class="o">-</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">docker</span>
+    <span class="o">-</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">portainer</span>
+    <span class="o">-</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">portainer</span><span class="o">/</span><span class="n">data</span>
+    <span class="o">-</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">watchtower</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="module-apt">
+<h2>Module APT<a class="headerlink" href="#module-apt" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html">apt</a></p>
+<div class="section" id="voorbeelden">
+<h3>Voorbeelden<a class="headerlink" href="#voorbeelden" title="Permalink to this headline">¶</a></h3>
+<p>Update repositories</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">update</span> <span class="n">repositories</span>
+  <span class="n">apt</span><span class="p">:</span>
+    <span class="n">update_cache</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>Installeer software packages</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">install</span> <span class="n">packages</span>
+  <span class="n">apt</span><span class="p">:</span>
+    <span class="n">pkg</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span>
+      <span class="o">-</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span>
+      <span class="o">-</span> <span class="n">curl</span>
+      <span class="o">-</span> <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span>
+</pre></div>
+</div>
+<p>Installeer software</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">update</span> <span class="n">repositories</span> <span class="ow">and</span> <span class="n">install</span> <span class="n">docker</span>
+  <span class="n">apt</span><span class="p">:</span>
+    <span class="n">update_cache</span><span class="p">:</span> <span class="n">yes</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">latest</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="module-command">
+<h2>Module Command<a class="headerlink" href="#module-command" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html">command</a></p>
+<div class="section" id="id3">
+<h3>Voorbeelden<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Toevoegen van een gebruiker aan een groep</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">add</span> <span class="n">user</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span> <span class="n">to</span> <span class="n">docker</span> <span class="n">group</span>
+  <span class="n">command</span><span class="p">:</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">docker</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Starten van een service</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">auto</span> <span class="n">start</span> <span class="n">docker</span> <span class="n">service</span>
+  <span class="n">command</span><span class="p">:</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="o">--</span><span class="n">now</span> <span class="n">docker</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="module-get-url">
+<h2>Module Get URL<a class="headerlink" href="#module-get-url" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html">get_url</a></p>
+<p>De module get_url is het Ansible alternatief voor het curl commando in Linux</p>
+<div class="section" id="id4">
+<h3>Voorbeeld Playbook<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">get</span> <span class="n">new</span> <span class="n">bash</span> <span class="n">rc</span> <span class="kn">from</span> <span class="nn">github</span>
+  <span class="n">get_url</span><span class="p">:</span>
+    <span class="n">url</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">url</span><span class="o">&gt;</span>
+    <span class="n">dest</span><span class="p">:</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">destination</span><span class="o">/</span><span class="n">file</span>
 </pre></div>
 </div>
 </div>
