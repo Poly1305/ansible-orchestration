@@ -11,7 +11,7 @@ Installeren van Ansible (Ubuntu server)
 
 .. code-block::
 	
-	sudo apt-update
+	sudo apt update
 
 .. code-block::
 

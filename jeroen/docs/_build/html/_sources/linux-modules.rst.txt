@@ -6,7 +6,7 @@ Linux modules
 
 Module Docker Container
 -----------------------
-`docker_container`_
+Ansible documentatie: `docker_container`_
 
 Voorbeeld Playbook (Watchtower)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41,7 +41,7 @@ Voorbeeld Playbook (Watchtower)
 
 Module Docker Network
 ---------------------
-`docker_network`_
+Ansible documentatie: `docker_network`_
 
 Voorbeeld Playbook
 ~~~~~~~~~~~~~~~~~~
@@ -57,8 +57,7 @@ Maak het **web** netwerk aan voor gebruik in de :ref:`module_docker_container` m
 
 Module File
 -----------
-
-`file`_
+Ansible documentatie: `file`_
 
 Voorbeeld Playbook
 ~~~~~~~~~~~~~~~~~~
@@ -81,8 +80,7 @@ Maak een aantal folders aan
 
 Module APT
 ----------
-
-`apt`_
+Ansible documentatie: `apt`_
 
 Voorbeelden
 ~~~~~~~~~~~
@@ -120,8 +118,7 @@ Installeer software
 
 Module Command
 --------------
-
-`command`_
+Ansible documentatie: `command`_
 
 Voorbeelden
 ~~~~~~~~~~~
@@ -143,12 +140,12 @@ Starten van een service
 
 Module Get URL
 --------------
-`get_url`_
+Ansible documentatie: `get_url`_
 
-De module get_url is het Ansible alternatief voor het curl commando in Linux
+De module get_url is het Ansible alternatief voor het curl commando in Linux.
 
-Voorbeeld Playbook
-~~~~~~~~~~~~~~~~~~
+Voorbeeld in Playbook
+~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block::
 
@@ -157,7 +154,62 @@ Voorbeeld Playbook
       url: https://<url>
       dest: /path/to/destination/file
 
+Module Copy
+-----------
+Ansible documentatie: `copy`_
 
+Met de copy module kan een bestand of tekst gekopieerd worden naar een bestand.
+
+
+Voorbeeld van bestand kopieëren in Playbook
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+  - name: Kopieer bestand en stel eigenaar en rechten in
+    copy:
+      src: /path/to/file.txt
+      dest: /path/to/dest/file.txt
+      owner: <gebruikersnaam>
+      group: <groepsnaam>
+      mode: '0755'
+
+Voorbeeld van bestand kopieëren en backup maken van oude betand
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+  - name: Kopieer bestand en stel eigenaar en rechten in
+    copy:
+      src: /path/to/file.txt
+      dest: /path/to/dest/file.txt
+      owner: <gebruikersnaam>
+      group: <groepsnaam>
+      backup: yes
+
+Voorbeeld van tekst in een bestand kopieëren
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Bijkomend voordeel, als het bestand niet bestaat zal deze aangemaakt worden
+
+.. code-block::
+
+   - name: Kopieer tekst in een bestand
+     copy:
+       dest: /path/to/file.txt
+       content: |
+         regel 1
+         regel 2
+
+
+Module Line in File
+-------------------
+Ansible documentatie: `lineinfile`_
+
+Met de module lineinfile kan tekst aangepast worden van een bestand.
+
+
+Voorbeeld gebruik in Playbook
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. External links
 
@@ -172,3 +224,7 @@ Voorbeeld Playbook
 .. _`command`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html
 
 .. _`get_url`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html
+
+.. _`copy`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+
+.. _`lineinfile`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html

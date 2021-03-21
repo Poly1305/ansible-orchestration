@@ -4,7 +4,7 @@ Windows modules
 
 Module Windows Features
 -----------------------
-`win_feature`_
+Ansible documentatie: `win_feature`_
 
 Voorbeeld Playbook
 ~~~~~~~~~~~~~~~~~~
@@ -31,7 +31,7 @@ Voorbeeld Playbook
 
 Module Windows Reboot
 ---------------------
-`win_reboot`_
+Ansible documentatie: `win_reboot`_
 
 Voorbeeld van herstarten na installeren rol/feature (In Playbook)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,7 +62,7 @@ Voorbeeld van herstarten na een bepaalde tijd (Playbook)
 
 Module Windows Ping
 -------------------
-`win_ping`_ 
+Ansible documentatie: `win_ping`_ 
 
 Voorbeeld van win_ping in Ansible syntax
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -89,7 +89,92 @@ Voorbeeld van win_ping in Playbook
 
 Module Windows Domain Controller
 --------------------------------
-`win_domain_controller`_
+Ansible documentatie: `win_domain`_
+
+Met de module win_domain kan een nieuw domein worden aangemaakt met een nieuw forest.
+
+
+Voorbeeld van win_domain_controller in Playbook
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+    - name: setup-adds
+      hosts: windows
+      remote_user: <gebruikersnaam>
+      become: yes
+      become_user: <gebruikersnaam>
+      become_method: runas
+      gather_facts: no
+      tasks:
+        - name: Maak een nieuw domein met een nieuw forest
+          win_domain:
+            dns_domain_name: <domeinnaam>.local
+            domain_netbios_name: <naam>
+            safe_mode_password: <password>
+          register: domain_result
+
+    - name: Start netlogon service
+      win_service:
+        name: netlogon
+        state: started
+
+    - name: Herstart server wanneer dit nodig is voor het installeren van de rol/feature
+      win_reboot:
+      when: domain_result.reboot_required 
+
+
+Module Windows DNS-client
+-------------------------
+Ansible documentatie: `win_dns_client`_
+
+Met de module win_dns_client kan de DNS ingesteld worden op een server. Bij het aanmaken van een nieuwe domein of het toevoegen van een computer aan een bestaand domein, moet de DNS ingesteld worden op het adres van de ADDS/DNS server. In geval van de ADDS/DNS server zelf, wordt deze ingesteld op localhost (127.0.0.1)
+
+
+Voorbeel van win_dns_client in Playbook
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+    - name: setup-dns-address
+      hosts: windows
+      remote_user: <gerbuikersnaam>
+      become: yes 
+      become_user: <gebruikersnaam>
+      become_method: runas
+      gather_facts: no
+      tasks:
+        - name: Stel DNS in op localhost en Cloudflare
+          win_dns_client:
+            adapter_names: 'Ethernet1'
+            ipv4_addresses:
+            - 127.0.0.1
+            - 1.1.1.1
+            log_path: c:\dns_log.txt
+
+
+Module Windows Service
+----------------------
+Ansible documentatie: `win_service`_
+
+Met de module win_service kan een service beheerd worden.
+
+Voorbeeld van gebruik win_service in een Playbook
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+    - name: Start netlogon service
+      win_service:
+        name: netlogon
+        state: started
+
+
+Overzicht alle Ansible Windows modules
+--------------------------------------
+
+Overzicht van alle Ansible `Windows modules`_
+
 
 
 .. External links
@@ -100,4 +185,10 @@ Module Windows Domain Controller
 
 .. _`win_ping`: https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_ping_module.html
 
-.. _`win_domain_controller`: https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_domain_controller_module.html
+.. _`win_domain`: https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_domain_module.html
+
+.. _`win_dns_client`: https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_dns_client_module.html
+
+.. _`win_service`: https://docs.ansible.com/ansible/2.9/modules/win_service_module.html#win-service-module
+
+.. _`Windows modules`: https://docs.ansible.com/ansible/2.9/modules/list_of_windows_modules.html

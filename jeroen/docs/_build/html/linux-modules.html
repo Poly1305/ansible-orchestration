@@ -113,7 +113,17 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-get-url">Module Get URL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Voorbeeld Playbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-in-playbook">Voorbeeld in Playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-copy">Module Copy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-van-bestand-kopieeren-in-playbook">Voorbeeld van bestand kopieëren in Playbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-van-bestand-kopieeren-en-backup-maken-van-oude-betand">Voorbeeld van bestand kopieëren en backup maken van oude betand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-van-tekst-in-een-bestand-kopieeren">Voorbeeld van tekst in een bestand kopieëren</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-line-in-file">Module Line in File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-gebruik-in-playbook">Voorbeeld gebruik in Playbook</a></li>
 </ul>
 </li>
 </ul>
@@ -189,7 +199,7 @@
 <h1>Linux modules<a class="headerlink" href="#linux-modules" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-docker-container">
 <span id="id1"></span><h2>Module Docker Container<a class="headerlink" href="#module-docker-container" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html">docker_container</a></p>
+<p>Ansible documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html">docker_container</a></p>
 <div class="section" id="voorbeeld-playbook-watchtower">
 <h3>Voorbeeld Playbook (Watchtower)<a class="headerlink" href="#voorbeeld-playbook-watchtower" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Watchtower</span>
@@ -223,7 +233,7 @@
 </div>
 <div class="section" id="module-docker-network">
 <h2>Module Docker Network<a class="headerlink" href="#module-docker-network" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://docs.ansible.com/ansible/2.3/docker_network_module.html">docker_network</a></p>
+<p>Ansible documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/2.3/docker_network_module.html">docker_network</a></p>
 <div class="section" id="voorbeeld-playbook">
 <h3>Voorbeeld Playbook<a class="headerlink" href="#voorbeeld-playbook" title="Permalink to this headline">¶</a></h3>
 <p>Maak het <strong>web</strong> netwerk aan voor gebruik in de <a class="reference internal" href="#module-docker-container"><span class="std std-ref">Module Docker Container</span></a> module</p>
@@ -237,7 +247,7 @@
 </div>
 <div class="section" id="module-file">
 <h2>Module File<a class="headerlink" href="#module-file" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html">file</a></p>
+<p>Ansible documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html">file</a></p>
 <div class="section" id="id2">
 <h3>Voorbeeld Playbook<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Maak een aantal folders aan</p>
@@ -259,7 +269,7 @@
 </div>
 <div class="section" id="module-apt">
 <h2>Module APT<a class="headerlink" href="#module-apt" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html">apt</a></p>
+<p>Ansible documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html">apt</a></p>
 <div class="section" id="voorbeelden">
 <h3>Voorbeelden<a class="headerlink" href="#voorbeelden" title="Permalink to this headline">¶</a></h3>
 <p>Update repositories</p>
@@ -290,7 +300,7 @@
 </div>
 <div class="section" id="module-command">
 <h2>Module Command<a class="headerlink" href="#module-command" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html">command</a></p>
+<p>Ansible documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html">command</a></p>
 <div class="section" id="id3">
 <h3>Voorbeelden<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Toevoegen van een gebruiker aan een groep</p>
@@ -307,16 +317,65 @@
 </div>
 <div class="section" id="module-get-url">
 <h2>Module Get URL<a class="headerlink" href="#module-get-url" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html">get_url</a></p>
-<p>De module get_url is het Ansible alternatief voor het curl commando in Linux</p>
-<div class="section" id="id4">
-<h3>Voorbeeld Playbook<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Ansible documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html">get_url</a></p>
+<p>De module get_url is het Ansible alternatief voor het curl commando in Linux.</p>
+<div class="section" id="voorbeeld-in-playbook">
+<h3>Voorbeeld in Playbook<a class="headerlink" href="#voorbeeld-in-playbook" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">get</span> <span class="n">new</span> <span class="n">bash</span> <span class="n">rc</span> <span class="kn">from</span> <span class="nn">github</span>
   <span class="n">get_url</span><span class="p">:</span>
     <span class="n">url</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">url</span><span class="o">&gt;</span>
     <span class="n">dest</span><span class="p">:</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">destination</span><span class="o">/</span><span class="n">file</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="module-copy">
+<h2>Module Copy<a class="headerlink" href="#module-copy" title="Permalink to this headline">¶</a></h2>
+<p>Ansible documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html">copy</a></p>
+<p>Met de copy module kan een bestand of tekst gekopieerd worden naar een bestand.</p>
+<div class="section" id="voorbeeld-van-bestand-kopieeren-in-playbook">
+<h3>Voorbeeld van bestand kopieëren in Playbook<a class="headerlink" href="#voorbeeld-van-bestand-kopieeren-in-playbook" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Kopieer</span> <span class="n">bestand</span> <span class="n">en</span> <span class="n">stel</span> <span class="n">eigenaar</span> <span class="n">en</span> <span class="n">rechten</span> <span class="ow">in</span>
+  <span class="n">copy</span><span class="p">:</span>
+    <span class="n">src</span><span class="p">:</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+    <span class="n">dest</span><span class="p">:</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">dest</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+    <span class="n">owner</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">gebruikersnaam</span><span class="o">&gt;</span>
+    <span class="n">group</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">groepsnaam</span><span class="o">&gt;</span>
+    <span class="n">mode</span><span class="p">:</span> <span class="s1">&#39;0755&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="voorbeeld-van-bestand-kopieeren-en-backup-maken-van-oude-betand">
+<h3>Voorbeeld van bestand kopieëren en backup maken van oude betand<a class="headerlink" href="#voorbeeld-van-bestand-kopieeren-en-backup-maken-van-oude-betand" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Kopieer</span> <span class="n">bestand</span> <span class="n">en</span> <span class="n">stel</span> <span class="n">eigenaar</span> <span class="n">en</span> <span class="n">rechten</span> <span class="ow">in</span>
+  <span class="n">copy</span><span class="p">:</span>
+    <span class="n">src</span><span class="p">:</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+    <span class="n">dest</span><span class="p">:</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">dest</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+    <span class="n">owner</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">gebruikersnaam</span><span class="o">&gt;</span>
+    <span class="n">group</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">groepsnaam</span><span class="o">&gt;</span>
+    <span class="n">backup</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="voorbeeld-van-tekst-in-een-bestand-kopieeren">
+<h3>Voorbeeld van tekst in een bestand kopieëren<a class="headerlink" href="#voorbeeld-van-tekst-in-een-bestand-kopieeren" title="Permalink to this headline">¶</a></h3>
+<p>Bijkomend voordeel, als het bestand niet bestaat zal deze aangemaakt worden</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Kopieer</span> <span class="n">tekst</span> <span class="ow">in</span> <span class="n">een</span> <span class="n">bestand</span>
+  <span class="n">copy</span><span class="p">:</span>
+    <span class="n">dest</span><span class="p">:</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+    <span class="n">content</span><span class="p">:</span> <span class="o">|</span>
+      <span class="n">regel</span> <span class="mi">1</span>
+      <span class="n">regel</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="module-line-in-file">
+<h2>Module Line in File<a class="headerlink" href="#module-line-in-file" title="Permalink to this headline">¶</a></h2>
+<p>Ansible documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html">lineinfile</a></p>
+<p>Met de module lineinfile kan tekst aangepast worden van een bestand.</p>
+<div class="section" id="voorbeeld-gebruik-in-playbook">
+<h3>Voorbeeld gebruik in Playbook<a class="headerlink" href="#voorbeeld-gebruik-in-playbook" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
