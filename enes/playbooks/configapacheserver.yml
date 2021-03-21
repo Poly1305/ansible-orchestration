@@ -1,0 +1,22 @@
+---
+
+- name: apache-install
+  hosts: node1
+  remote_user: student
+  become: yes
+  tasks:
+    - name: delete index.html
+      file:
+        path: "/var/www/html/index.html"
+        state: absent
+    - name: aanmaken index.html
+      file:
+        path: "/var/www/html/index.html"
+        state: touch
+        mode: '0755'
+        owner: student
+    - name: wijzigen index.html
+      copy:
+        dest: "/var/www/html/index.html"
+        content: |
+          <!DOCTYPE html> <html> <body> <h1>My First Heading</h1> <p>My first paragraph.</p></body></html>
