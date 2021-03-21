@@ -212,6 +212,7 @@ Voorbeeld teskt toevoegen aan het einde van een bestand
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block::
+
    - name: Voeg tekst toe aan het einde van een bestand
      lineinfile:
        dest: "/path/to/file.txt"

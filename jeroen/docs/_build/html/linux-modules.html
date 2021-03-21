@@ -123,7 +123,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-line-in-file">Module Line in File</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-gebruik-in-playbook">Voorbeeld gebruik in Playbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-teskt-toevoegen-aan-het-einde-van-een-bestand">Voorbeeld teskt toevoegen aan het einde van een bestand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-bestaande-tekst-aanpassen">Voorbeeld bestaande tekst aanpassen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-tekst-toevoegen-meerdere-regels">Voorbeeld tekst toevoegen meerdere regels</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-service">Module Service</a><ul>
@@ -378,8 +380,40 @@
 <h2>Module Line in File<a class="headerlink" href="#module-line-in-file" title="Permalink to this headline">¶</a></h2>
 <p>Ansible documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html">lineinfile</a></p>
 <p>Met de module lineinfile kan tekst aangepast worden van een bestand.</p>
-<div class="section" id="voorbeeld-gebruik-in-playbook">
-<h3>Voorbeeld gebruik in Playbook<a class="headerlink" href="#voorbeeld-gebruik-in-playbook" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="voorbeeld-teskt-toevoegen-aan-het-einde-van-een-bestand">
+<h3>Voorbeeld teskt toevoegen aan het einde van een bestand<a class="headerlink" href="#voorbeeld-teskt-toevoegen-aan-het-einde-van-een-bestand" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Voeg</span> <span class="n">tekst</span> <span class="n">toe</span> <span class="n">aan</span> <span class="n">het</span> <span class="n">einde</span> <span class="n">van</span> <span class="n">een</span> <span class="n">bestand</span>
+  <span class="n">lineinfile</span><span class="p">:</span>
+    <span class="n">dest</span><span class="p">:</span> <span class="s2">&quot;/path/to/file.txt&quot;</span>
+    <span class="n">insertafter</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">line</span><span class="p">:</span> <span class="s2">&quot;de nieuwe tekst&quot;</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">present</span>
+    <span class="n">backup</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="voorbeeld-bestaande-tekst-aanpassen">
+<h3>Voorbeeld bestaande tekst aanpassen<a class="headerlink" href="#voorbeeld-bestaande-tekst-aanpassen" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">wijzig</span> <span class="n">tekst</span>
+  <span class="n">lineinfile</span><span class="p">:</span>
+    <span class="n">dest</span><span class="p">:</span> <span class="s2">&quot;/path/to/file.txt&quot;</span>
+    <span class="n">regexp</span><span class="p">:</span> <span class="s2">&quot;^Tekst&quot;</span>
+    <span class="n">line</span><span class="p">:</span> <span class="s2">&quot;Nieuwe tekst&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="voorbeeld-tekst-toevoegen-meerdere-regels">
+<h3>Voorbeeld tekst toevoegen meerdere regels<a class="headerlink" href="#voorbeeld-tekst-toevoegen-meerdere-regels" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">wijzig</span> <span class="n">tekst</span>
+  <span class="n">lineinfile</span><span class="p">:</span>
+    <span class="n">dest</span><span class="p">:</span> <span class="s2">&quot;/path/to/file.txt&quot;</span>
+    <span class="n">insertbefore</span> <span class="s2">&quot;^tekst&quot;</span>
+    <span class="n">line</span><span class="p">:</span> <span class="o">|</span>
+      <span class="n">Regel</span> <span class="mi">1</span>
+      <span class="n">Regel</span> <span class="mi">2</span>
+      <span class="n">Regel</span> <span class="mi">3</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="module-service">
@@ -389,7 +423,7 @@
 <h3>Voorbeeld herstarten service in Playbook<a class="headerlink" href="#voorbeeld-herstarten-service-in-playbook" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">herstarten</span> <span class="n">service</span>
   <span class="n">service</span><span class="p">:</span>
-    <span class="n">name</span><span class="p">:</span> <span class="n">apache2</span>
+    <span class="n">name</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">servicenaam</span><span class="o">&gt;</span>
     <span class="n">state</span><span class="p">:</span> <span class="n">restarted</span>
 </pre></div>
 </div>
