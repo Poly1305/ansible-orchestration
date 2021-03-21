@@ -1,0 +1,11 @@
+---
+
+- name: apacheinstall
+  hosts: linux
+  remote_user: student
+  become: yes
+  tasks:
+    - name: nano installeren
+      apt:
+        name: nano
+        state: present

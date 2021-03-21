@@ -1,0 +1,18 @@
+---
+
+- name: hostname-change
+  hosts: node1
+  remote_user: student
+  become: yes
+  tasks:
+    - name: hostname veranderen van node1
+      command: hostnamectl set-hostname node1
+
+- name: hostname-change
+  hosts: node2
+  remote_user: student
+  become: yes
+  tasks:
+    - name: hostname veranderen van node2
+      command: hostnamectl set-hostname node2
+
