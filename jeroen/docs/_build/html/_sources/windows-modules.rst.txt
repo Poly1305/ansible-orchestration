@@ -4,7 +4,7 @@ Windows modules
 
 Module Windows Features
 -----------------------
-`win_feature`_
+Ansible documentatie: `win_feature`_
 
 Voorbeeld Playbook
 ~~~~~~~~~~~~~~~~~~
@@ -31,7 +31,7 @@ Voorbeeld Playbook
 
 Module Windows Reboot
 ---------------------
-`win_reboot`_
+Ansible documentatie: `win_reboot`_
 
 Voorbeeld van herstarten na installeren rol/feature (In Playbook)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,7 +62,7 @@ Voorbeeld van herstarten na een bepaalde tijd (Playbook)
 
 Module Windows Ping
 -------------------
-`win_ping`_ 
+Ansible documentatie: `win_ping`_ 
 
 Voorbeeld van win_ping in Ansible syntax
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -89,7 +89,7 @@ Voorbeeld van win_ping in Playbook
 
 Module Windows Domain Controller
 --------------------------------
-`win_domain`_
+Ansible documentatie: `win_domain`_
 
 Met de module win_domain kan een nieuw domein worden aangemaakt met een nieuw forest.
 
@@ -126,7 +126,7 @@ Voorbeeld van win_domain_controller in Playbook
 
 Module Windows DNS-client
 -------------------------
-`win_dns_client`_
+Ansible documentatie: `win_dns_client`_
 
 Met de module win_dns_client kan de DNS ingesteld worden op een server. Bij het aanmaken van een nieuwe domein of het toevoegen van een computer aan een bestaand domein, moet de DNS ingesteld worden op het adres van de ADDS/DNS server. In geval van de ADDS/DNS server zelf, wordt deze ingesteld op localhost (127.0.0.1)
 
@@ -155,7 +155,7 @@ Voorbeel van win_dns_client in Playbook
 
 Module Windows Service
 ----------------------
-`win_service`_
+Ansible documentatie: `win_service`_
 
 Met de module win_service kan een service beheerd worden.
 

@@ -211,6 +211,23 @@ Met de module lineinfile kan tekst aangepast worden van een bestand.
 Voorbeeld gebruik in Playbook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+Module Service
+--------------
+Ansible Documentatie: `service`_
+
+
+Voorbeeld herstarten service in Playbook
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+   - name: herstarten service
+     service:
+       name: apache2
+       state: restarted
+
+
 .. External links
 
 .. _`docker_container`: https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html
@@ -228,3 +245,5 @@ Voorbeeld gebruik in Playbook
 .. _`copy`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
 
 .. _`lineinfile`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
+
+.. _`service`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html

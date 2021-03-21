@@ -208,8 +208,35 @@ Ansible documentatie: `lineinfile`_
 Met de module lineinfile kan tekst aangepast worden van een bestand.
 
 
-Voorbeeld gebruik in Playbook
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Voorbeeld teskt toevoegen aan het einde van een bestand
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+   - name: Voeg tekst toe aan het einde van een bestand
+     lineinfile:
+       dest: "/path/to/file.txt"
+       insertafter: ""
+       line: "de nieuwe tekst"
+       state: present
+       backup: yes
+
+
+Module Service
+--------------
+Ansible Documentatie: `service`_
+
+
+Voorbeeld herstarten service in Playbook
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+   - name: herstarten service
+     service:
+       name: <servicenaam>
+       state: restarted
+
+
 
 
 .. External links
@@ -229,3 +256,5 @@ Voorbeeld gebruik in Playbook
 .. _`copy`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
 
 .. _`lineinfile`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
+
+.. _`service`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html

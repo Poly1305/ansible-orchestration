@@ -126,6 +126,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#voorbeeld-gebruik-in-playbook">Voorbeeld gebruik in Playbook</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-service">Module Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#voorbeeld-herstarten-service-in-playbook">Voorbeeld herstarten service in Playbook</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="windows-modules.html">Windows modules</a></li>
@@ -376,6 +380,19 @@
 <p>Met de module lineinfile kan tekst aangepast worden van een bestand.</p>
 <div class="section" id="voorbeeld-gebruik-in-playbook">
 <h3>Voorbeeld gebruik in Playbook<a class="headerlink" href="#voorbeeld-gebruik-in-playbook" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="module-service">
+<h2>Module Service<a class="headerlink" href="#module-service" title="Permalink to this headline">¶</a></h2>
+<p>Ansible Documentatie: <a class="reference external" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html">service</a></p>
+<div class="section" id="voorbeeld-herstarten-service-in-playbook">
+<h3>Voorbeeld herstarten service in Playbook<a class="headerlink" href="#voorbeeld-herstarten-service-in-playbook" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">herstarten</span> <span class="n">service</span>
+  <span class="n">service</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">apache2</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">restarted</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
