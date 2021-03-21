@@ -1,0 +1,17 @@
+---
+- name: setup-dns-address
+  hosts: windows
+  remote_user: student
+  become: yes
+  become_user: student
+  become_method: runas
+  gather_facts: no
+  tasks:
+    - name: Zet de DNS op localhost en Google
+      win_dns_client:
+        adapter_names: 'Ethernet1'
+        ipv4_addresses:
+        - 127.0.0.1
+        - 8.8.8.8
+        log_path: c:\dns_log.txt
+    

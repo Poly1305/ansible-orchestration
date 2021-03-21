@@ -5,6 +5,6 @@
   become: yes
   become_user: student
   become_method: runas
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - win_ping:  
