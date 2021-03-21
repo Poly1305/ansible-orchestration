@@ -1,0 +1,44 @@
+---
+
+- name: apache-install
+  hosts: node1
+  remote_user: student
+  become: yes
+  tasks:
+    - name: apache ServerSignature Off
+      lineinfile:
+        path: "/etc/apache2/apache2.conf"
+        line: | 
+          ServerSignature Off
+          ServerTokens Prod
+          Header set X-XSS-Protection "1; mode=block"
+        insertafter: ""
+        state: present
+        backup: yes
+    - name: apache Disable Directory Listing
+      lineinfile:
+        path: "/etc/apache2/apache2.conf"
+#        regexp: '^#<Directory /srv/>'
+        insertbefore: '^#<Directory /srv/>'
+        line: |
+          <Directory /var/www/html>
+              Options -Indexes
+          </Directory>
+    - name: create .htaccess
+      file:
+        path: "/var/www/html/.htaccess"
+        state: touch
+        owner: student
+        group: ansible
+        mode: '0755'
+    - name: edit .htaccess
+      copy:
+        dest: "/var/www/html/.htaccess"
+        content: |
+          <IfModule mod_headers.c>
+              Header set X-XSS-Protection "1; mode=block"
+          </IfModule>
+    - name: restart apacheserver
+      service:
+        name: apache2
+        state: restarted
