@@ -1,0 +1,19 @@
+---
+
+- name: replacetext
+  hosts: node1
+  remote_user: "{{ username }}"
+  become: yes
+  vars_files:
+    - vars-apache.yml
+  tasks:
+    - name: Vervang tekst in bestand
+      replace:
+        path: "/home/student/test.txt"
+        regexp: "^abc"
+        replace: "Enes is de beste" 
+    - name: Tekst toevoegen aan het bestand
+      replace: 
+        path: "/home/student/test.txt"
+        regexp: ""
+        replace: "En nu zijn we er klaar mee"
