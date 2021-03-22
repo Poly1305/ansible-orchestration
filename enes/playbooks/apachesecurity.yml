@@ -13,7 +13,7 @@
     # Edit apache2.conf
     - name: apache ServerSignature Off
       lineinfile:
-        path: {{ apache-config-path }}
+        path: "{{ apache-config-path }}"
         regexp: "^ServerSignature"
         line: | 
           ServerSignature Off
@@ -26,7 +26,7 @@
     # Edit apache2.conf
     - name: apache Disable Directory Listing
       lineinfile:
-        path: {{ apache-config-path }}
+        path: "{{ apache-config-path }}"
         insertbefore: '^#<Directory /srv/>'
         regexp: "^<Directory /var/www/html>"
         line: |
