@@ -168,6 +168,15 @@
             
   <div class="section" id="ansible-voorbereidingen">
 <h1>Ansible voorbereidingen<a class="headerlink" href="#ansible-voorbereidingen" title="Permalink to this headline">¶</a></h1>
+<p>Voor het opzetten van de Ansible master server kan gebruik worden gemaakt van het ansible-setup script. Het script voert de volgende handelingen uit:</p>
+<ul class="simple">
+<li><p>Installeer Ansible</p></li>
+<li><p>Maak een private en public key aan</p></li>
+<li><p>Kopieer de public key naar een host</p></li>
+<li><p>Voeg hosts toe aan de Ansible inventory (/etc/ansible/hosts)</p></li>
+<li><p>Test de verbinding naar de host met <cite>ansible -m ping</cite></p></li>
+</ul>
+<p>Link naar <a class="reference external" href="https://github.com/jebr/linux-scripts/tree/main/ansible-setup">Ansible Setup Script</a></p>
 <div class="section" id="installeren-van-ansible-ubuntu-server">
 <h2>Installeren van Ansible (Ubuntu server)<a class="headerlink" href="#installeren-van-ansible-ubuntu-server" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">

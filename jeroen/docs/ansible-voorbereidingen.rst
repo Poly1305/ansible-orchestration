@@ -3,6 +3,16 @@
 Ansible voorbereidingen
 =======================
 
+Voor het opzetten van de Ansible master server kan gebruik worden gemaakt van het ansible-setup script. Het script voert de volgende handelingen uit:
+
+* Installeer Ansible
+* Maak een private en public key aan
+* Kopieer de public key naar een host
+* Voeg hosts toe aan de Ansible inventory (/etc/ansible/hosts)
+* Test de verbinding naar de host met `ansible -m ping`
+
+Link naar `Ansible Setup Script`_
+
 
 Installeren van Ansible (Ubuntu server)
 ---------------------------------------
@@ -80,3 +90,5 @@ Response:
 .. External links
 
 .. _`Ansible configuratie`: https://raw.githubusercontent.com/Poly1305/ansible-orchestration/master/jeroen/ansible-config/ansible.cfg?token=AB26NX7P6XIEUJULLQFSKV3AL46OE
+
+.. _`Ansible Setup Script`: https://github.com/jebr/linux-scripts/tree/main/ansible-setup
