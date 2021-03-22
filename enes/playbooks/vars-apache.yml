@@ -2,4 +2,4 @@
 
 
 username: student
-apache-config-path: "/etc/apache2/apache.conf"
+apache_config_path: "/etc/apache2/apache2.conf"

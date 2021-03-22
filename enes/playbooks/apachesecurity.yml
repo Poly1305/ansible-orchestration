@@ -8,17 +8,20 @@
     - vars-apache.yml
   tasks:
     - name: Enable Apache headers mod
-      command: sudo a2enmod headers
+      command: a2enmod headers
 
     # Edit apache2.conf
     - name: apache ServerSignature Off
       lineinfile:
-        path: "{{ apache-config-path }}"
-        regexp: "^ServerSignature"
+        path: "{{ apache_config_path }}"
+        regexp: "^ServerSignature Off\nServerTokens Prod\nHeader set X-XSS-Protection \"1; mode=block\""
         line: | 
           ServerSignature Off
           ServerTokens Prod
           Header set X-XSS-Protection "1; mode=block"
+          Header always append X-Frame-Options SAMEORIGIN
+          # Load the headers module
+          LoadModule headers_module modules/mod_headers.so
         insertafter: ""
         state: present
         backup: yes
@@ -26,15 +29,23 @@
     # Edit apache2.conf
     - name: apache Disable Directory Listing
       lineinfile:
-        path: "{{ apache-config-path }}"
+        path: "{{ apache_config_path }}"
         insertbefore: '^#<Directory /srv/>'
         regexp: "^<Directory /var/www/html>"
         line: |
           <Directory /var/www/html>
               Options -Indexes
+               FileETag None
+               RewriteEngine On
+               RewriteCond %{THE_REQUEST} !HTTP/1\.1$
+               RewriteRule .* - [F]
+               deny from all
+               Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+               <LimitExcept GET POST HEAD>
+                   deny from all
+               </LimitExcept>
           </Directory>
-#    - name:  
-    
+
     - name: restart apacheserver
       service:
         name: apache2
