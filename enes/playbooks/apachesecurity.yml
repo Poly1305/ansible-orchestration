@@ -33,7 +33,7 @@
           <Directory /var/www/html>
               Options -Indexes
           </Directory>
-    - name:  
+#    - name:  
     
     - name: restart apacheserver
       service:
