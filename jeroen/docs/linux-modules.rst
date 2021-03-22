@@ -212,6 +212,7 @@ Voorbeeld teskt toevoegen aan het einde van een bestand
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block::
+
    - name: Voeg tekst toe aan het einde van een bestand
      lineinfile:
        dest: "/path/to/file.txt"
@@ -219,6 +220,33 @@ Voorbeeld teskt toevoegen aan het einde van een bestand
        line: "de nieuwe tekst"
        state: present
        backup: yes
+
+
+Voorbeeld bestaande tekst aanpassen
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+    - name: wijzig tekst
+      lineinfile:
+        dest: "/path/to/file.txt"
+        regexp: "^Tekst"
+        line: "Nieuwe tekst"
+
+
+Voorbeeld tekst toevoegen meerdere regels
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+    - name: wijzig tekst
+      lineinfile:
+        dest: "/path/to/file.txt"
+        insertbefore "^tekst"
+        line: |
+          Regel 1
+          Regel 2
+          Regel 3
 
 
 Module Service

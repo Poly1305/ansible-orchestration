@@ -56,13 +56,15 @@ Ansible Configuratie
 Playbooks
 =========
 
-`Playbooks Jeroen`_
+* `Playbooks Jeroen`_
+* `Playbooks Enes`_
 
 .. External links
 
 .. _`Ansible configuratie`: https://raw.githubusercontent.com/Poly1305/ansible-orchestration/master/jeroen/ansible-config/ansible.cfg?token=AB26NX7P6XIEUJULLQFSKV3AL46OE
 
 .. _`Playbooks Jeroen`: https://github.com/Poly1305/ansible-orchestration/tree/master/jeroen/playbooks
+.. _`Playbooks Enes`: https://github.com/Poly1305/ansible-orchestration/tree/master/enes/playbooks
 
 .. Indices and tables
 .. ==================
