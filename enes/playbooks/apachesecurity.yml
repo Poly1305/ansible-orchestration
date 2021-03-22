@@ -4,10 +4,17 @@
   hosts: node1
   remote_user: student
   become: yes
+  vars_files:
+    - vars-apache.yml
   tasks:
+    - name: Enable Apache headers mod
+      command: sudo a2enmod headers
+
+    # Edit apache2.conf
     - name: apache ServerSignature Off
       lineinfile:
-        path: "/etc/apache2/apache2.conf"
+        path: {{ apache-config-path }}
+        regexp: "^ServerSignature"
         line: | 
           ServerSignature Off
           ServerTokens Prod
@@ -15,29 +22,19 @@
         insertafter: ""
         state: present
         backup: yes
+
+    # Edit apache2.conf
     - name: apache Disable Directory Listing
       lineinfile:
-        path: "/etc/apache2/apache2.conf"
-#        regexp: '^#<Directory /srv/>'
+        path: {{ apache-config-path }}
         insertbefore: '^#<Directory /srv/>'
+        regexp: "^<Directory /var/www/html>"
         line: |
           <Directory /var/www/html>
               Options -Indexes
           </Directory>
-    - name: create .htaccess
-      file:
-        path: "/var/www/html/.htaccess"
-        state: touch
-        owner: student
-        group: ansible
-        mode: '0755'
-    - name: edit .htaccess
-      copy:
-        dest: "/var/www/html/.htaccess"
-        content: |
-          <IfModule mod_headers.c>
-              Header set X-XSS-Protection "1; mode=block"
-          </IfModule>
+    - name:  
+    
     - name: restart apacheserver
       service:
         name: apache2
