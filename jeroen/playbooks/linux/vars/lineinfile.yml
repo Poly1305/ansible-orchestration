@@ -1,0 +1,4 @@
+---
+username: student
+path: /home/student/infile-test.txt
+text: Dit is de regel die een keer moet worden toegevoegd
