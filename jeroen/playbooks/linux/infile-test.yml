@@ -9,12 +9,13 @@
     - name: Plaats tekst in een bestand en controleer of deze al bestaat
       lineinfile:
         path: "{{ path }}"
-#        regexp: "^ServerSignature Off\nServerTokens Prod\nHeader set X-XSS-Protection \"1; mode=block\""
+        regexp: "^abc"
+#        insertafter: "^abc"
         line: "{{ text }}"
         insertafter: ""
         state: present
         backup: yes
-      check_mode: yes
+      check_mode: no
 #        ignore_errors: yes
 #        changed_when: no
 
