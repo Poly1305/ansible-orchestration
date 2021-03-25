@@ -1,0 +1,19 @@
+---
+
+make_folders:
+  - /home/jeroen/apache
+  - /home/jeroen/docker/mariadb
+  - /home/jeroen/docker/phpmyadmin
+network: lamp
+mariadb_volumes:
+  - /home/jeroen/docker/mariadb:/var/lib/mysql
+database: lamp
+database_user: lamp
+database_password: MyPassword123
+apache_volumes:
+  - /home/jeroen/docker/apache:/usr/local/apache2/htdocs/
+pache_ports: 8080:80
+phpmyadmin_ports: 8081:80
+phpmyadmin_user: pma
+phpmyadmin_password: MysecondPassword123
+phpmyadmin_sql_password: MyPassword123

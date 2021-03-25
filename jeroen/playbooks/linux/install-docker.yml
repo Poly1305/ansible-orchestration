@@ -1,8 +1,10 @@
 ---
-- name: deploydocker
+- name: install-docker
   hosts: linux
-  remote_user: jeroen
+  remote_user: "{{ user }}"
   become: true
+  vars_files:
+    - vars-general.yml
   tasks:
     - name: update repositories
       apt:
@@ -31,7 +33,7 @@
       apt:
         name: docker-compose
         state: latest
-    - name: add user jeroen to docker group
-      command: usermod -aG docker jeroen
+    - name: "add user {{ user }} to docker group"
+      command: "usermod -aG docker {{ user }}"
     - name: auto start docker service
       command: systemctl enable --now docker.service

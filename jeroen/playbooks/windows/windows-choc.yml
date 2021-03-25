@@ -1,10 +1,12 @@
 ---
 - name: install-chocolate
   hosts: windows
-  remote_user: student
+  remote_user: "{{ user }}"
   become: yes
-  become_user: student
+  become_user: "{{ user }}"
   become_method: runas
+  vars_files:
+    - vars-global.yml
   tasks:
     - name: Installeer Chocolatey op Windows Server
       win_chocolatey:

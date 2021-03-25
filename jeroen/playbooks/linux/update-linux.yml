@@ -1,0 +1,24 @@
+---
+
+- name: update-linux
+  remote_user: "{{ user }}"
+  become: yes
+  hosts: node1
+  vars_files:
+    - vars-general.yml
+  tasks:
+    - name: update repositories
+      apt:
+        update_cache: yes
+    - name: update update linux
+      apt:
+        name: "*"
+        state: latest
+      register: update_linux
+    - name: clean useless packages
+      apt:
+        autoclean: yes
+    - name: remove useless packages
+      apt:
+        autoremove: yes
+    

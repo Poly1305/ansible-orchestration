@@ -1,0 +1,18 @@
+---
+
+make_folders:
+  - /home/jeroen/docker
+  - /home/jeroen/docker/portainer
+  - /home/jeroen/docker/portainer/data
+  - /home/jeroen/docker/watchtower
+network: web
+portainer_ports:
+  - 8000:8000
+  - 9000:9000
+portainer_volumes:
+  - /var/run/docker.sock:/var/run/docker.sock
+  - /home/jeroen/docker/portainer/data:/data
+watchtower_volumes:
+  - /var/run/docker.sock:/var/run/docker.sock
+watchtower_notfi_url: telegram://<bot-token>@<bot-username>?channels=@<channel-name>
+timezone: Europe/Amsterdam

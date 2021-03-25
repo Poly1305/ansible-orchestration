@@ -7,26 +7,25 @@
 
 - name: lampstack
   hosts: linux
-  remote_user: jeroen
+  remote_user: "{{ user }}"
   become: true
+  vars_files:
+    - vars-general.yml
+    - vars-deploy-lamp-stack.yml
   tasks:
     # Create folders
     - name: create necessary folders
       file:
-        path: "{{ item }}"
-        owner: jeroen
+        path: "{{ make_folders }}"
+        owner: "{{ user }}"
         group: sudo
-        mode: 0755
+        mode: "0755"
         state: directory
-      with_items:
-        - /home/jeroen/apache
-        - /home/jeroen/docker/mariadb
-        - /home/jeroen/docker/phpmyadmin
 
     # Create web network
     - name: create lamp network
       docker_network:
-        name: lamp      
+        name: "{{ network }}"      
 
     # MariaDB
     - name: Deploy MariaDB database
@@ -39,15 +38,14 @@
 #        state: absent
         purge_networks: yes
         networks_cli_compatible: yes
-        volumes:
-          - /home/jeroen/docker/mariadb:/var/lib/mysql
+        volumes: "{{ mariadb_volumes }}"
         env:
           MYSQL_RANDOM_ROOT_PASSWORD: "yes"
-          MYSQL_DATABASE: "lamp"
-          MYSQL_USER: "lamp"
-          MYSQL_PASSWORD: "<your password here>"
+          MYSQL_DATABASE: "{{ database }}"
+          MYSQL_USER: "{{ database_user }}"
+          MYSQL_PASSWORD: "{{ database_password }}"
         networks:
-          - name: lamp
+          - name: "{{ network }}"
 
     # Apache
     - name: Deploy Apache webserver
@@ -62,12 +60,10 @@
 #        state: absent
         purge_networks: yes
         networks_cli_compatible: yes
-        volumes:
-          - /home/jeroen/docker/apache:/usr/local/apache2/htdocs/
-        published_ports:
-          - 8080:80
+        volumes: "{{ apache_volumes }}"
+        published_ports: "{{ apache_ports }}"
         networks:
-          - name: lamp
+          - name: "{{ network }}"
 
     # PHPMyAdmin
     - name: Deploy PHPMyAdmin
@@ -82,15 +78,14 @@
           - mariadb:mariadb
         purge_networks: yes
         networks_cli_compatible: yes
-        published_ports:
-          - 8081:80
+        published_ports: "{{ phpmyadmin_ports }}"
         env:
           PMA_ARBITRARY: "1"
           PMA_HOST: "mariadb"
           PMA_PORT: "3306"
-          PMA_USER: "lamp"
-          PMA_PASSWORD: "<your password here>"
-          MYSQL_PASSWORD: "<your password here>"
+          PMA_USER: "{{ phpmyadmin_user }}"
+          PMA_PASSWORD: "{{ phpmyadmin_password }}"
+          MYSQL_PASSWORD: "{{ MyPassword123 }}"
         networks:
-          - name: lamp
+          - name: "{{ network }}""
 

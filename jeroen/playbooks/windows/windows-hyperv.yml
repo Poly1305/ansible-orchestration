@@ -1,11 +1,13 @@
 ---
 - name: install-hyperv
   hosts: windows
-  remote_user: student
+  remote_user: "{{ user }}"
   become: yes
-  become_user: student
+  become_user: "{{ user }}"
   become_method: runas
   gather_facts: no
+  vars_files:
+    - vars-global.yml
   tasks:
     - name: Installeer Hyper-V
       win_feature:

@@ -6,27 +6,25 @@
 
 - name: deploydocker
   hosts: linux
-  remote_user: jeroen
+  remote_user: "{{ user }}"
   become: true
+  vars_files:
+    - vars-general.yml
+    - vars-deploy-docker.yml
   tasks:
     # Create folders
     - name: create necessary folders
       file:
-        path: "{{ item }}"
-        owner: jeroen
+        path: "{{ make_folders }}"
+        owner: "{{ user }}"
         group: sudo
-        mode: 0755
+        mode: '0755'
         state: directory
-      with_items:
-        - /home/jeroen/docker
-        - /home/jeroen/docker/portainer
-        - /home/jeroen/docker/portainer/data
-        - /home/jeroen/docker/watchtower
 
     # Create web network
     - name: create web network
       docker_network:
-        name: web      
+        name: "{{ network }}"      
 
     # Portainer
     - name: laungh portainer container
@@ -39,14 +37,10 @@
 #        state: absent
         purge_networks: yes
         networks_cli_compatible: yes
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
-          - /home/jeroen/docker/portainer/data:/data
-        published_ports:
-          - 8000:8000
-          - 9000:9000
+        volumes: "{{ portainer_volumes }}"
+        published_ports: "{{ portainer_ports }}"
         networks:
-          - name: web
+          - name: "{{ network }}"
 
     # Watchtower
     - name: laungh watchtower container
@@ -59,18 +53,17 @@
 #        state: absent
         purge_networks: yes
         networks_cli_compatible: yes
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
+        volumes: "{{ watchtower_volumes }}"
         env:
-          TZ: "Europe/Amsterdam"
+          TZ: "{{ timezone }}"
           WATCHTOWER_POLL_INTERVAL: "3600"
           WATCHTOWER_INCLUDE_STOPPED: "true"
           WATCHTOWER_DEBUG: "true"
           WATCHTOWER_CLEANUP: "true"
           WATCHTOWER_NOTIFICATIONS: "shoutrrr"
-          WATCHTOWER_NOTIFICATION_URL: "telegram://<bot-token>@<bot-username>?channels=@<channel-name>"
+          WATCHTOWER_NOTIFICATION_URL: "{{ watchtower_notfi_url }}"
           WATCHTOWER_MONITOR_ONLY: "true"
           WATCHTOWER_REVIVE_STOPPED: "true"
         networks:
-          - name: web
+          - name: "{{ network }}"
 

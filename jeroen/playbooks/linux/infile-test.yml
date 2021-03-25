@@ -1,10 +1,11 @@
 ---
 - name: lininfile
   hosts: node1
-  remote_user: "{{ username }}"
+  remote_user: "{{ user }}"
   become: true
   vars_files:
-    - vars/lineinfile.yml
+    - vars-general.yml
+    - vars-lineinfile.yml
   tasks:
     - name: Plaats tekst in een bestand en controleer of deze al bestaat
       lineinfile:

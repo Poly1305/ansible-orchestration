@@ -1,0 +1,11 @@
+---
+
+user: student
+network_adapter: Ethernet1
+dns_addresses:
+  - 127.0.0.1
+  - 8.8.8.8
+log_dns_setup: c:\dns_log.txt
+domain_name: ansible.local
+domain_netbios: WSRV-ADDS
+domain_safemode_password: Password123!

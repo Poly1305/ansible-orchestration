@@ -1,8 +1,10 @@
 ---
 - name: checknano
-  hosts: linux
-  remote_user: jeroen
+  hosts: node1
+  remote_user: "{{ user }}"
   become: true
+  vars_files:
+    - vars-general.yml
   tasks:
     - name: check if nano is installed
       apt:

@@ -1,7 +1,9 @@
 ---
 - name: pinglinux
   hosts: linux
-  remote_user: jeroen
+  remote_user: "{{ user }}"
   become: yes
+  vars_filoes:
+    - vars-general.yml
   tasks:
     - ping:   

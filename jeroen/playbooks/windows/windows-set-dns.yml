@@ -1,11 +1,13 @@
 ---
 - name: setup-dns-address
   hosts: windows
-  remote_user: student
+  remote_user: "{{ user }}"
   become: yes
   become_user: student
-  become_method: runas
+  become_method: "{{ user }}"
   gather_facts: no
+  vars_files:
+    - vars-global.yml
   tasks:
     - name: Zet de DNS op localhost en Google
       win_dns_client:

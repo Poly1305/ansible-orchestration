@@ -3,11 +3,13 @@
 # Install ADDS
 - name: install-adds
   hosts: windows
-  remote_user: student
+  remote_user: "{{ user }}"
   become: yes
-  become_user: student
+  become_user: "{{ user }}"
   become_method: runas
   gather_facts: yes
+  vars_files:
+    - vars-global.yml
   tasks:
     - name: Installeer ADDS
       win_feature:
@@ -17,7 +19,7 @@
         include_management_tools: yes
       register: win_feature
     
-    - name: Installer DNS
+    - name: Installeer DNS
       win_feature:
         name: DNS
         state: present
@@ -35,34 +37,32 @@
 # Set DNS Localhost
 - name: setup-dns-address
   hosts: windows
-  remote_user: student
+  remote_user: "{{ user }}"
   become: yes
-  become_user: student
+  become_user: "{{ user }}"
   become_method: runas
   gather_facts: no
   tasks:
-    - name: Stel DNS in op localhost en Google
+    - name: Stel DNS IPv4 adressen in
       win_dns_client:
-        adapter_names: 'Ethernet1'
-        ipv4_addresses:
-        - 127.0.0.1
-        - 8.8.8.8
-        log_path: c:\dns_log.txt
+        adapter_names: "{{ network_adapter }}"
+        ipv4_addresses: "{{ dns_addresses }}"
+        log_path: "{{ log_dns_setup }}"
 
 # Setup ADDS
 - name: setup-adds
   hosts: windows
-  remote_user: student
+  remote_user: "{{ user }}"
   become: yes
-  become_user: student
+  become_user: "{{ user }}"
   become_method: runas
   gather_facts: no
   tasks:
     - name: Maak een nieuw domein met een nieuw forest
       win_domain:
-        dns_domain_name: ansible.local
-        domain_netbios_name: WSRV-ADDS
-        safe_mode_password: Password123!
+        dns_domain_name: "{{ domain_name }}"
+        domain_netbios_name: "{{ domain_netbios }}"
+        safe_mode_password: "{{ domain_safemode_password }}"
       register: domain_result
 
     - name: Start netlogon service
