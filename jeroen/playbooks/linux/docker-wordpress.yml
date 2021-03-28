@@ -7,6 +7,39 @@
   vars_files:
     - vars-wordpress.yml
   tasks:
+    # Install Docker
+    - name: update repositories
+      apt:
+        update_cache: yes
+    - name: install packages
+      apt:
+        pkg:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+    - name: add GPG key for the official Docker repository to the system
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    - name: add docker repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+    - name: update repositories and install docker
+      apt:
+        update_cache: yes
+        name: docker-ce
+        state: latest
+    - name: install docker-compose
+      apt:
+        name: docker-compose
+        state: latest
+    - name: "add user {{ user }} to docker group"
+      command: "usermod -aG docker {{ user }}"
+    - name: auto start docker service
+      command: systemctl enable --now docker.service
+
     # Create folders
     - name: create necessary folders
       file:
