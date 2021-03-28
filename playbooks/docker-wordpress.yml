@@ -1,0 +1,126 @@
+---
+
+- name: docker-wordpress
+  hosts: "{{ host }}"
+  remote_user: "{{ user }}"
+  become: true
+  vars_files:
+    - vars-wordpress.yml
+  tasks:
+    # Install Docker
+    - name: update repositories
+      apt:
+        update_cache: yes
+    - name: install packages
+      apt:
+        pkg:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+    - name: add GPG key for the official Docker repository to the system
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    - name: add docker repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+    - name: update repositories and install docker
+      apt:
+        update_cache: yes
+        name: docker-ce
+        state: latest
+    - name: install docker-compose
+      apt:
+        name: docker-compose
+        state: latest
+    - name: "add user {{ user }} to docker group"
+      command: "usermod -aG docker {{ user }}"
+    - name: auto start docker service
+      command: systemctl enable --now docker.service
+
+    # Create folders
+    - name: create necessary folders
+      file:
+        path: "{{ item }}"
+        owner: "{{ user }}"
+        group: sudo
+        mode: "0755"
+        state: directory
+      with_items:
+        - "/home/{{ user }}/apache"
+        - "/home/{{ user }}/docker/wordpressdb"
+        - "/home/{{ user }}/docker/wordpress"
+        - "/home/{{ user }}/docker/portainer"
+        - "/home/{{ user }}/docker/portainer/data"
+
+    # Create wordpress network
+    - name: create wordpress network
+      docker_network:
+        name: "{{ network }}"      
+
+    # MySQL
+    - name: Deploy Wordpress database
+      docker_container:
+        name: wordpressdb
+        image: mysql:5.7
+        restart_policy: unless-stopped
+        detach: yes
+        state: started
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes: "/home/{{ user }}/docker/wordpressdb:/var/lib/mysql"
+        env:
+          MYSQL_DATABASE: "{{ database }}"
+          MYSQL_USER: "{{ database_user }}"
+          MYSQL_PASSWORD: "{{ database_password }}"
+          MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+        networks:
+          - name: "{{ network }}"
+
+    # Wordpress
+    - name: Deploy Wordpress
+      docker_container:
+        name: wordpress
+        image: wordpress
+        restart_policy: unless-stopped
+        detach: yes
+        links:
+          - wordpressdb:wordpressdb
+        state: started
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes:
+          - "/home/{{ user }}/docker/wordpress:/var/www/html"
+          - "/home/{{ user }}/docker/wordpress/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
+        env:
+          WORDPRESS_DB_HOST: wordpressdb
+          WORDPRESS_DB_USER: "{{ database_user }}"
+          WORDPRESS_DB_PASSWORD: "{{ database_password }}"
+          WORDPRESS_DB_NAME: "{{ database }}"
+        published_ports: "{{ wordpress_ports }}"
+        networks:
+          - name: "{{ network }}"
+
+    # Portainer
+    - name: laungh portainer container
+      docker_container:
+        name: portainer
+        image: portainer/portainer-ce
+        restart_policy: unless-stopped
+        detach: yes
+        state: started
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes: 
+          - "/var/run/docker.sock:/var/run/docker.sock"
+          - "/home/{{ user }}/docker/portainer/data:/data"
+        published_ports: 
+          - 8000:8000
+          - 9000:9000
+        networks:
+          - name: "{{ network }}"
