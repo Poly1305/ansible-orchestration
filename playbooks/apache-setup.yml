@@ -1,0 +1,107 @@
+---
+- name: apache-install
+  hosts: "{{ host }}"
+  remote_user: "{{ username }}"
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - vars-apache.yml
+  tasks:
+    - name: Installeren van Apache2
+      apt:
+        name=apache2
+        update_cache=yes
+        state=present
+    - name: Activeren van mod_rewrite
+      apache2_module:
+        name=rewrite
+        state=present
+    - name: Poort aanpassen Apache2 naar 8082
+      lineinfile:
+        dest=/etc/apache2/ports.conf regexp="^Listen 80"
+        line="Listen 8082"
+        state=present
+    - name: Poort aanpassen Apache2 naar 8082 (VirtualHost)
+      lineinfile:
+        dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:80>"
+        line="<VirtualHost *:8082>"
+        state=present
+    - name: Herstart Apache service
+      service:
+        name: apache2
+        state: restarted
+
+- name: apache-config
+  hosts: "{{ host }}"
+  remote_user: "{{ username }}"
+  become: yes
+  gather_facts: no
+  vars_files:
+    - vars-apache.yml
+  tasks:
+    - name: Verwijderden standaard index.html
+      file:
+        path: "/var/www/html/index.html"
+        state: absent
+    - name: Aanmaken nieuwe index.html
+      file:
+        path: "/var/www/html/index.html"
+        state: touch
+        mode: '0755'
+        owner: "{{ username }}"
+    - name: Wijzigen nieuwe index.html
+      copy:
+        dest: "/var/www/html/index.html"
+        content: |
+          <!DOCTYPE html> <html> <body> <h1>My First Heading</h1> <p>My first paragraph.</p></body></html>
+
+- name: apache-security
+  hosts: "{{ host }}" 
+  remote_user: "{{ username }}"
+  become: yes
+  gather_facts: no
+  vars_files:
+    - vars-apache.yml
+  tasks:
+    - name: Activeer Apache headers_mod
+      command: a2enmod headers
+
+    # Edit apache2.conf
+    - name: Beveiligen van Apache server
+      lineinfile:
+        path: "{{ apache_config_path }}"
+        regexp: "^ServerSignature Off\nServerTokens Prod\nHeader set X-XSS-Protection \"1; mode=block\""
+        line: |
+          ServerSignature Off
+          ServerTokens Prod
+          Header set X-XSS-Protection "1; mode=block"
+          Header always append X-Frame-Options SAMEORIGIN
+          # Load the headers module
+          LoadModule headers_module modules/mod_headers.so
+        insertafter: ""
+        state: present
+        backup: yes
+
+    # Edit apache2.conf
+    - name: Deactiveer Apache Directory Listing
+      lineinfile:
+        path: "{{ apache_config_path }}"
+        insertbefore: '^#<Directory /srv/>'
+        regexp: "^<Directory /var/www/html>"
+        line: |
+          <Directory /var/www/html>
+              Options -Indexes
+               FileETag None
+               RewriteEngine On
+               RewriteCond %{THE_REQUEST} !HTTP/1\.1$
+               RewriteRule .* - [F]
+               Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+               <LimitExcept GET POST HEAD>
+                   deny from all
+               </LimitExcept>
+          </Directory>
+
+    - name: Herstart Apache service
+      service:
+        name: apache2
+        state: restarted
