@@ -20,8 +20,8 @@
         - /home/{{ user }}/docker/wordpressdb
         - /home/{{ user }}/docker/wordpress
 
-    # Create web network
-    - name: create lamp network
+    # Create wordpress network
+    - name: create wordpress network
       docker_network:
         name: "{{ network }}"      
 
