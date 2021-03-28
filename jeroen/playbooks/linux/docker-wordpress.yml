@@ -64,7 +64,7 @@
     - name: Deploy Wordpress database
       docker_container:
         name: wordpressdb
-        image: wordpress
+        image: mysql:5.7
         restart_policy: unless-stopped
         detach: yes
         state: started
