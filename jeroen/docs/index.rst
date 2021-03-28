@@ -58,6 +58,8 @@ Playbooks
 
 * `Playbooks Jeroen`_
 * `Playbooks Enes`_
+* `Playbooks Martijn`_
+* `Playbooks Joseph`_
 
 .. External links
 
@@ -65,6 +67,8 @@ Playbooks
 
 .. _`Playbooks Jeroen`: https://github.com/Poly1305/ansible-orchestration/tree/master/jeroen/playbooks
 .. _`Playbooks Enes`: https://github.com/Poly1305/ansible-orchestration/tree/master/enes/playbooks
+.. _`Playbooks Joseph`: https://github.com/Poly1305/ansible-orchestration/tree/master/joseph/ansible/playbooks
+.. _`Playbooks Martijn`: https://github.com/Poly1305/ansible-orchestration/tree/master/martijn/playbooks
 
 .. Indices and tables
 .. ==================
