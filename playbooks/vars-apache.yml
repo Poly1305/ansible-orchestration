@@ -1,0 +1,5 @@
+---
+
+host: node1
+username: student
+apache_config_path: "/etc/apache2/apache2.conf"
