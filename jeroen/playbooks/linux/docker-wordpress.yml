@@ -99,5 +99,6 @@
           WORDPRESS_DB_USER: "{{ database_user }}"
           WORDPRESS_DB_PASSWORD: "{{ database_password }}"
           WORDPRESS_DB_NAME: "{{ database }}"
+        published_ports: "{{ wordpress_ports }}"
         networks:
           - name: "{{ network }}"
