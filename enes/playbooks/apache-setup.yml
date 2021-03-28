@@ -3,6 +3,7 @@
   hosts: "{{ host }}"
   remote_user: "{{ username }}"
   become: yes
+  gathering_facts: yes
   vars_files:
     - vars-apache.yml
   tasks:
@@ -34,6 +35,7 @@
   hosts: "{{ host }}"
   remote_user: "{{ username }}"
   become: yes
+  gathering_facts: no
   vars_files:
     - vars-apache.yml
   tasks:
@@ -57,6 +59,7 @@
   hosts: "{{ host }}" 
   remote_user: "{{ username }}"
   become: yes
+  gathering_facts: no
   vars_files:
     - vars-apache.yml
   tasks:
