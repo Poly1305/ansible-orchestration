@@ -1,0 +1,12 @@
+---
+
+host: node1
+user: jeroen
+
+network: wordpress
+
+mysql_volumes:
+ - 
+database: wordpress
+database_user: wordpress
+database_password: MyPassword123

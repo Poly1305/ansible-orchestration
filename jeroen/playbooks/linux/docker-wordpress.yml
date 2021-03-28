@@ -1,0 +1,70 @@
+---
+
+- name: docker-wordpress
+  hosts: "{{ host }}"
+  remote_user: "{{ user }}"
+  become: true
+  vars_files:
+    - vars-wordpress.yml
+  tasks:
+    # Create folders
+    - name: create necessary folders
+      file:
+        path: "{{ item }}"
+        owner: "{{ user }}"
+        group: sudo
+        mode: "0755"
+        state: directory
+      with_items:
+        - /home/{{ user }}/apache
+        - /home/{{ user }}/docker/wordpressdb
+        - /home/{{ user }}/docker/wordpress
+
+    # Create web network
+    - name: create lamp network
+      docker_network:
+        name: "{{ network }}"      
+
+    # MySQL
+    - name: Deploy Wordpress database
+      docker_container:
+        name: wordpressdb
+        image: wordpress
+        restart_policy: unless-stopped
+        detach: yes
+        state: started
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes: "/home/{{ user }}/docker/wordpressdb:/var/lib/mysql"
+        env:
+          MYSQL_DATABASE: "{{ database }}"
+          MYSQL_USER: "{{ database_user }}"
+          MYSQL_PASSWORD: "{{ database_password }}"
+          MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+        networks:
+          - name: "{{ network }}"
+
+    # Wordpress
+    - name: Deploy Wordpress
+      docker_container:
+        name: wordpress
+        image: wordpress
+        restart_policy: unless-stopped
+        detach: yes
+        links:
+          - wordpressdb:wordpressdb
+        state: started
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes:
+          - "/home/{{ user }}/docker/wordpress:/var/www/html"
+          - "/home/{{ user }}/docker/wordpress/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
+        env:
+          WORDPRESS_DB_HOST: wordpressdb
+          WORDPRESS_DB_USER: "{{ database_user }}"
+          WORDPRESS_DB_PASSWORD: "{{ database_password }}"
+          WORDPRESS_DB_NAME: "{{ database }}"
+        networks:
+          - name: "{{ network }}"

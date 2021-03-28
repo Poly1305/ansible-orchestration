@@ -1,10 +1,5 @@
 ---
 
-# Used modules
-# https://docs.ansible.com/ansible/2.6/modules/docker_container_module.html
-# https://docs.ansible.com/ansible/2.5/modules/file_module.html#file-module
-# https://docs.ansible.com/ansible/latest/collections/community/docker/docker_network_module.html#ansible-collections-community-docker-docker-network-module
-
 - name: lampstack
   hosts: linux
   remote_user: "{{ user }}"
