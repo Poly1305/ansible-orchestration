@@ -15,7 +15,7 @@
       lineinfile:
         path: "{{ apache_config_path }}"
         regexp: "^ServerSignature Off\nServerTokens Prod\nHeader set X-XSS-Protection \"1; mode=block\""
-        line: | 
+        line: |
           ServerSignature Off
           ServerTokens Prod
           Header set X-XSS-Protection "1; mode=block"
