@@ -49,9 +49,11 @@
         mode: "0755"
         state: directory
       with_items:
-        - /home/{{ user }}/apache
-        - /home/{{ user }}/docker/wordpressdb
-        - /home/{{ user }}/docker/wordpress
+        - "/home/{{ user }}/apache"
+        - "/home/{{ user }}/docker/wordpressdb"
+        - "/home/{{ user }}/docker/wordpress"
+        - "/home/{{ user }}/docker/portainer"
+        - "/home/{{ user }}/docker/portainer/data"
 
     # Create wordpress network
     - name: create wordpress network
@@ -100,5 +102,25 @@
           WORDPRESS_DB_PASSWORD: "{{ database_password }}"
           WORDPRESS_DB_NAME: "{{ database }}"
         published_ports: "{{ wordpress_ports }}"
+        networks:
+          - name: "{{ network }}"
+
+    # Portainer
+    - name: laungh portainer container
+      docker_container:
+        name: portainer
+        image: portainer/portainer-ce
+        restart_policy: unless-stopped
+        detach: yes
+        state: started
+#        state: absent
+        purge_networks: yes
+        networks_cli_compatible: yes
+        volumes: 
+          - "/var/run/docker.sock:/var/run/docker.sock"
+          - "/home/{{ user }}/docker/portainer/data:/data"
+        published_ports: 
+          - 8000:8000
+          - 9000:9000
         networks:
           - name: "{{ network }}"
