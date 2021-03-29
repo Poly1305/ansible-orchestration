@@ -1,6 +1,7 @@
 ---
 
 user: student
+hostname: wsrvadds
 network_adapter: Ethernet1
 dns_addresses:
   - 127.0.0.1

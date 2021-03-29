@@ -1,5 +1,22 @@
 ---
 
+# Change Hostname
+- name: change-hostname
+  hosts: windows
+  remote_user: "{{ user }}"
+  become: yes
+  become_user: "{{ user }}"
+  become_method: runas
+  gather_facts: yes
+  vars_files:
+    - vars-global.yml
+  tasks:
+    - name: Change server hostname
+      win_hostname:
+        name: "{{ hostname }}"
+    - name: Herstart server
+      win_reboot:
+
 # Install ADDS
 - name: install-adds
   hosts: windows
