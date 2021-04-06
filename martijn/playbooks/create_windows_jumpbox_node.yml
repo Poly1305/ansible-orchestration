@@ -52,5 +52,7 @@
       networks:
         - name: "{{ network_portgroup_inet }}"
           connected: yes
+      wait_for_ip_address: yes
+      wait_for_ip_address_timeout: "60"
       state: poweredon
     register: windows
