@@ -4,6 +4,7 @@
   hosts: "{{ host }}"
   remote_user: "{{ user }}"
   become: true
+  become_pass: "{{ password }}"
   vars_files:
     - vars-wordpress.yml
   tasks:

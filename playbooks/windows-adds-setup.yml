@@ -2,7 +2,7 @@
 
 # Change Hostname
 - name: change-hostname
-  hosts: windows
+  hosts: "{{ host }}"
   remote_user: "{{ user }}"
   become: yes
   become_user: "{{ user }}"

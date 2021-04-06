@@ -3,6 +3,7 @@
   hosts: "{{ host }}"
   remote_user: "{{ username }}"
   become: yes
+  become_pass: "{{ password }}"
   gather_facts: yes
   vars_files:
     - vars-apache.yml

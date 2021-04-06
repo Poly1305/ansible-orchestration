@@ -1,7 +1,8 @@
 ---
 
-host: node1
-user: jeroen
+host: wordpress
+user: student
+password: student
 
 
 network: wordpress

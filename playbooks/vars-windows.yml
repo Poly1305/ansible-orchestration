@@ -1,5 +1,6 @@
 ---
 
+host: windows
 user: student
 hostname: wsrvadds
 network_adapter: Ethernet1
