@@ -6,16 +6,51 @@
   vars_files:
     - seclab.yml
   tasks:
-  - name: Deploy database node from Linux Alpine template
+  - name: Deploy database node from Alpine 3.13.2 template # but not really, because we don't have permissions to deploy a custom template
     vmware_guest:
       hostname: "{{ hostname }}"
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} N2-DATABASE"
-      template: "Templ_Alpine_Linux_3.13.2"
+      name: "{{ name_prefix }} Database node"
+      template: "{{ ubuntu_template }}"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
       folder: "{{ folder }}"
       resource_pool: "{{ resource_pool }}"
       state: present
+
+  - name: Attach internet NIC to the virtual machine
+    vmware_guest:
+      hostname: "{{ hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: False
+      name: "{{ name_prefix }} Database node"
+      template: "{{ ubuntu_template }}"
+      datacenter: "{{ datacenter }}"
+      datastore: "{{ datastore }}"
+      folder: "{{ folder }}"
+      resource_pool: "{{ resource_pool }}"
+      networks:
+        - name: "{{ network_portgroup_inet }}"
+          connected: yes
+      state: present
+
+  - name: Power on Virtual Machine
+    vmware_guest:
+      hostname: "{{ hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: False
+      name: "{{ name_prefix }} Database node"
+      template: "{{ ubuntu_template }}"
+      datacenter: "{{ datacenter }}"
+      datastore: "{{ datastore }}"
+      folder: "{{ folder }}"
+      resource_pool: "{{ resource_pool }}"
+      networks:
+        - name: "{{ network_portgroup_inet }}"
+          connected: yes
+      state: poweredon
+    register: database

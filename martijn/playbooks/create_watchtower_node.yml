@@ -13,9 +13,44 @@
       password: "{{ password }}"
       validate_certs: False
       name: "{{ name_prefix }} Watchtower"
-      template: "Netlab-DC/vm/_Templates/Various/Templ_Ubuntu_Server_20.04"
+      template: "{{ ubuntu_template }}"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
       folder: "{{ folder }}"
       resource_pool: "{{ resource_pool }}"
       state: present
+
+  - name: Attach internet NIC to the virtual machine
+    vmware_guest:
+      hostname: "{{ hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: False
+      name: "{{ name_prefix }} Watchtower"
+      template: "{{ ubuntu_template }}"
+      datacenter: "{{ datacenter }}"
+      datastore: "{{ datastore }}"
+      folder: "{{ folder }}"
+      resource_pool: "{{ resource_pool }}"
+      networks:
+        - name: "{{ network_portgroup_inet }}"
+          connected: yes
+      state: present
+
+  - name: Power on Virtual Machine
+    vmware_guest:
+      hostname: "{{ hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: False
+      name: "{{ name_prefix }} Watchtower"
+      template: "{{ ubuntu_template }}"
+      datacenter: "{{ datacenter }}"
+      datastore: "{{ datastore }}"
+      folder: "{{ folder }}"
+      resource_pool: "{{ resource_pool }}"
+      networks:
+        - name: "{{ network_portgroup_inet }}"
+          connected: yes
+      state: poweredon
+    register: watchtower

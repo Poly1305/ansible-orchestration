@@ -1,21 +1,56 @@
 ---
-- name: Deploy jumpbox
+- name: Windows Server node
   hosts: localhost
   connection: local
   gather_facts: no
   vars_files:
     - seclab.yml
   tasks:
-  - name: Deploy Windows jumpbox from Windows Server 2019 template
+  - name: Deploy Windows Server node from Windows Server 2019 (1809) template
     vmware_guest:
       hostname: "{{ hostname }}"
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} N3-JUMPBOX"
-      template: "Templ_Server2019_Std_1809"
+      name: "{{ name_prefix }} Windows Server node"
+      template: "{{ windows_template }}"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
       folder: "{{ folder }}"
       resource_pool: "{{ resource_pool }}"
       state: present
+
+  - name: Attach internet NIC to the virtual machine
+    vmware_guest:
+      hostname: "{{ hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: False
+      name: "{{ name_prefix }} Windows Server node"
+      template: "{{ windows_template }}"
+      datacenter: "{{ datacenter }}"
+      datastore: "{{ datastore }}"
+      folder: "{{ folder }}"
+      resource_pool: "{{ resource_pool }}"
+      networks:
+        - name: "{{ network_portgroup_inet }}"
+          connected: yes
+      state: present
+
+  - name: Power on Virtual Machine
+    vmware_guest:
+      hostname: "{{ hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: False
+      name: "{{ name_prefix }} Windows Server node"
+      template: "{{ windows_template }}"
+      datacenter: "{{ datacenter }}"
+      datastore: "{{ datastore }}"
+      folder: "{{ folder }}"
+      resource_pool: "{{ resource_pool }}"
+      networks:
+        - name: "{{ network_portgroup_inet }}"
+          connected: yes
+      state: poweredon
+    register: windows
