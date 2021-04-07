@@ -3,7 +3,7 @@
 host: windows
 user: student
 hostname: wsrvadds
-network_adapter: Ethernet*
+network_adapter: "*"
 dns_addresses:
   - 127.0.0.1
   - 1.1.1.1
