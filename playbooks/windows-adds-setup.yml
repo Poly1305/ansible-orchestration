@@ -24,7 +24,7 @@
   become: yes
   become_user: "{{ user }}"
   become_method: runas
-  gather_facts: yes
+  gather_facts: no
   vars_files:
     - vars-windows.yml
   tasks:
@@ -44,9 +44,9 @@
         include_management_tools: yes
       register: win_feature
    
-    - name: Herstart server wanneer dit nodig is voor het installeren van de rol/feature
-      win_reboot:
-      when: win_feature.reboot_required  
+    #- name: Herstart server wanneer dit nodig is voor het installeren van de rol/feature
+    #  win_reboot:
+    #  when: win_feature.reboot_required  
     
     - name: Herstart server
       win_reboot:
@@ -91,6 +91,9 @@
         name: netlogon
         state: started
 
-    - name: Herstart server wanneer dit nodig is voor het installeren van de rol/feature
+    #- name: Herstart server wanneer dit nodig is voor het installeren van de rol/feature
+    #  win_reboot:
+    #  when: domain_result.reboot_required  
+
+    - name: Herstart server
       win_reboot:
-      when: domain_result.reboot_required  
