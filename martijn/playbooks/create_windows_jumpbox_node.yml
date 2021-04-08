@@ -35,6 +35,7 @@
       networks:
         - name: "{{ network_portgroup_inet }}"
           connected: yes
+          ip: "192.168.56.178"
       state: present
 
   - name: Power on Virtual Machine
@@ -52,7 +53,8 @@
       networks:
         - name: "{{ network_portgroup_inet }}"
           connected: yes
+          start_connected: yes
+          ip: "192.168.56.178"          
       wait_for_ip_address: yes
-      wait_for_ip_address_timeout: "60"
       state: poweredon
     register: windows

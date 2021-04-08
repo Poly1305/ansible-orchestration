@@ -1,18 +1,18 @@
 ---
-- name: Watchtower
+- name: Master
   hosts: localhost
   connection: local
   gather_facts: no
   vars_files:
     - seclab.yml
   tasks:
-  - name: Deploy watchtower node from Ubuntu Server 20.04 template
+  - name: Deploy Ansible master node from Ubuntu Server 20.04 template
     vmware_guest:
       hostname: "{{ hostname }}"
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} Watchtower"
+      name: "{{ name_prefix }} Master"
       template: "{{ ubuntu_template }}"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
@@ -26,7 +26,7 @@
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} Watchtower"
+      name: "{{ name_prefix }} Master"
       template: "{{ ubuntu_template }}"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
@@ -34,6 +34,7 @@
       resource_pool: "{{ resource_pool }}"
       networks:
         - name: "{{ network_portgroup_inet }}"
+          ip: "192.168.56.175"
           connected: yes
       state: present
 
@@ -43,7 +44,7 @@
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} Watchtower"
+      name: "{{ name_prefix }} Master"
       template: "{{ ubuntu_template }}"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
@@ -51,6 +52,7 @@
       resource_pool: "{{ resource_pool }}"
       networks:
         - name: "{{ network_portgroup_inet }}"
+          ip: "192.168.56.175"
           connected: yes
       state: poweredon
-    register: watchtower
+    register: master

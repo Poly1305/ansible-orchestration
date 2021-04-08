@@ -1,18 +1,18 @@
 ---
-- name: Database node
+- name: Wordpress
   hosts: localhost
   connection: local
   gather_facts: no
   vars_files:
     - seclab.yml
   tasks:
-  - name: Deploy database node from Alpine 3.13.2 template # but not really, because we don't have permissions to deploy a custom template
+  - name: Deploy Wordpress node from Alpine 3.13.2 template # but not really, because we don't have permissions to deploy a custom template
     vmware_guest:
       hostname: "{{ hostname }}"
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} Database node"
+      name: "{{ name_prefix }} Wordpress node"
       template: "{{ ubuntu_template }}"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
@@ -26,7 +26,7 @@
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} Database node"
+      name: "{{ name_prefix }} Wordpress node"
       template: "{{ ubuntu_template }}"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
@@ -35,6 +35,7 @@
       networks:
         - name: "{{ network_portgroup_inet }}"
           connected: yes
+          ip: "192.168.56.177"
       state: present
 
   - name: Power on Virtual Machine
@@ -43,7 +44,7 @@
       username: "{{ username }}"
       password: "{{ password }}"
       validate_certs: False
-      name: "{{ name_prefix }} Database node"
+      name: "{{ name_prefix }} Wordpress node"
       template: "{{ ubuntu_template }}"
       datacenter: "{{ datacenter }}"
       datastore: "{{ datastore }}"
@@ -52,5 +53,6 @@
       networks:
         - name: "{{ network_portgroup_inet }}"
           connected: yes
+          ip: "192.168.56.177"
       state: poweredon
-    register: database
+    register: wordpress
