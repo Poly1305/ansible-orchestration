@@ -36,6 +36,8 @@
         - name: "{{ network_portgroup_inet }}"
           connected: yes
           ip: "192.168.56.177"
+          netmask: "255.255.255.0"
+          gateway: "192.168.56.1"
       state: present
 
   - name: Power on Virtual Machine
@@ -54,5 +56,7 @@
         - name: "{{ network_portgroup_inet }}"
           connected: yes
           ip: "192.168.56.177"
+          netmask: "255.255.255.0"
+          gateway: "192.168.56.1"
       state: poweredon
     register: wordpress
