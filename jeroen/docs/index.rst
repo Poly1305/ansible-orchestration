@@ -52,7 +52,15 @@ Ansible Configuratie
    ansible-opties.rst
    ansible-hosts.rst
    Ansible configuratie <https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/ansible.cfg>
-   
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Software:
+   :hidden:
+
+   Ansible installatiescript <https://github.com/jebr/linux-scripts/tree/main/ansible-setup>
+   SSH server Windows installatiescript <https://github.com/jebr/windows-scripts/tree/main/openssh-server>
+
 
 Playbooks
 =========

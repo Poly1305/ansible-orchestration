@@ -4,12 +4,12 @@ Windows modules
 
 Module Windows Features
 -----------------------
-Ansible documentatie: `win_feature`_
+Ansible documentatie: `win_feature <https://docs.ansible.com/ansible/2.8/modules/win_feature_module.html>`_
 
 Voorbeeld Playbook
 ~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
 	---
 	- name: install-hyperv
@@ -31,11 +31,11 @@ Voorbeeld Playbook
 
 Module Windows Reboot
 ---------------------
-Ansible documentatie: `win_reboot`_
+Ansible documentatie: `win_reboot <https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_reboot_module.html>`_
 
 Voorbeeld van herstarten na installeren rol/feature (In Playbook)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. code-block::
+.. code-block:: yaml
 
 	- name: Herstart server wanneer dit nodig is voor het installeren van de rol/feature
 	  win_reboot:
@@ -44,7 +44,7 @@ Voorbeeld van herstarten na installeren rol/feature (In Playbook)
 
 Voorbeeld van herstarten na een bepaalde tijd (Playbook)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. code-block::
+.. code-block:: yaml
 
 	---
 	- name: rebootwindows
@@ -62,7 +62,7 @@ Voorbeeld van herstarten na een bepaalde tijd (Playbook)
 
 Module Windows Ping
 -------------------
-Ansible documentatie: `win_ping`_ 
+Ansible documentatie: `win_ping <https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_ping_module.html>`_ 
 
 Voorbeeld van win_ping in Ansible syntax
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -73,7 +73,7 @@ Voorbeeld van win_ping in Ansible syntax
 
 Voorbeeld van win_ping in Playbook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. code-block::
+.. code-block:: yaml
 
 	---
 	- name: ping-windows
@@ -89,7 +89,7 @@ Voorbeeld van win_ping in Playbook
 
 Module Windows Domain Controller
 --------------------------------
-Ansible documentatie: `win_domain`_
+Ansible documentatie: `win_domain <https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_domain_module.html>`_
 
 Met de module win_domain kan een nieuw domein worden aangemaakt met een nieuw forest.
 
@@ -97,7 +97,7 @@ Met de module win_domain kan een nieuw domein worden aangemaakt met een nieuw fo
 Voorbeeld van win_domain_controller in Playbook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
     - name: setup-adds
       hosts: windows
@@ -126,7 +126,7 @@ Voorbeeld van win_domain_controller in Playbook
 
 Module Windows DNS-client
 -------------------------
-Ansible documentatie: `win_dns_client`_
+Ansible documentatie: `win_dns_client <https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_dns_client_module.html>`_
 
 Met de module win_dns_client kan de DNS ingesteld worden op een server. Bij het aanmaken van een nieuwe domein of het toevoegen van een computer aan een bestaand domein, moet de DNS ingesteld worden op het adres van de ADDS/DNS server. In geval van de ADDS/DNS server zelf, wordt deze ingesteld op localhost (127.0.0.1)
 
@@ -134,7 +134,7 @@ Met de module win_dns_client kan de DNS ingesteld worden op een server. Bij het 
 Voorbeel van win_dns_client in Playbook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
     - name: setup-dns-address
       hosts: windows
@@ -155,14 +155,14 @@ Voorbeel van win_dns_client in Playbook
 
 Module Windows Service
 ----------------------
-Ansible documentatie: `win_service`_
+Ansible documentatie: `win_service <https://docs.ansible.com/ansible/2.9/modules/win_service_module.html#win-service-module>`_
 
 Met de module win_service kan een service beheerd worden.
 
 Voorbeeld van gebruik win_service in een Playbook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
     - name: Start netlogon service
       win_service:
@@ -173,22 +173,4 @@ Voorbeeld van gebruik win_service in een Playbook
 Overzicht alle Ansible Windows modules
 --------------------------------------
 
-Overzicht van alle Ansible `Windows modules`_
-
-
-
-.. External links
-
-.. _`win_feature`: https://docs.ansible.com/ansible/2.8/modules/win_feature_module.html
-
-.. _`win_reboot`: https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_reboot_module.html
-
-.. _`win_ping`: https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_ping_module.html
-
-.. _`win_domain`: https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_domain_module.html
-
-.. _`win_dns_client`: https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_dns_client_module.html
-
-.. _`win_service`: https://docs.ansible.com/ansible/2.9/modules/win_service_module.html#win-service-module
-
-.. _`Windows modules`: https://docs.ansible.com/ansible/2.9/modules/list_of_windows_modules.html
+Overzicht van alle Ansible `Windows modules <https://docs.ansible.com/ansible/2.9/modules/list_of_windows_modules.html>`_

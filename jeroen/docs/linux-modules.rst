@@ -6,12 +6,12 @@ Linux modules
 
 Module Docker Container
 -----------------------
-Ansible documentatie: `docker_container`_
+Ansible documentatie: `docker_container <https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html>`_
 
 Voorbeeld Playbook (Watchtower)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: python
+.. code-block:: yaml
 
 	# Watchtower
 	- name: laungh watchtower container
@@ -41,14 +41,14 @@ Voorbeeld Playbook (Watchtower)
 
 Module Docker Network
 ---------------------
-Ansible documentatie: `docker_network`_
+Ansible documentatie: `docker_network <https://docs.ansible.com/ansible/2.3/docker_network_module.html>`_
 
 Voorbeeld Playbook
 ~~~~~~~~~~~~~~~~~~
 
 Maak het **web** netwerk aan voor gebruik in de :ref:`module_docker_container` module
 
-.. code-block::
+.. code-block:: yaml
 
   # Create web network
   - name: create web network
@@ -57,13 +57,13 @@ Maak het **web** netwerk aan voor gebruik in de :ref:`module_docker_container` m
 
 Module File
 -----------
-Ansible documentatie: `file`_
+Ansible documentatie: `file <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html>`_
 
 Voorbeeld Playbook
 ~~~~~~~~~~~~~~~~~~
 Maak een aantal folders aan
 
-.. code-block::
+.. code-block:: yaml
 
   - name: create necessary folders
     file:
@@ -80,14 +80,14 @@ Maak een aantal folders aan
 
 Module APT
 ----------
-Ansible documentatie: `apt`_
+Ansible documentatie: `apt <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html>`_
 
 Voorbeelden
 ~~~~~~~~~~~
 
 Update repositories
 
-.. code-block::
+.. code-block:: yaml
 	
   - name: update repositories
     apt:
@@ -95,7 +95,7 @@ Update repositories
 
 Installeer software packages
 
-.. code-block::
+.. code-block:: yaml
 
   - name: install packages
     apt:
@@ -107,7 +107,7 @@ Installeer software packages
 
 Installeer software
 
-.. code-block::
+.. code-block:: yaml
 	
   - name: update repositories and install docker
     apt:
@@ -118,21 +118,21 @@ Installeer software
 
 Module Command
 --------------
-Ansible documentatie: `command`_
+Ansible documentatie: `command <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html>`_
 
 Voorbeelden
 ~~~~~~~~~~~
 
 Toevoegen van een gebruiker aan een groep
 
-.. code-block::
+.. code-block:: yaml
 	
   - name: add user <username> to docker group
     command: usermod -aG docker <username>
 
 Starten van een service
-
-.. code-block::
+ 
+.. code-block:: yaml
 
   - name: auto start docker service
     command: systemctl enable --now docker.service
@@ -140,14 +140,14 @@ Starten van een service
 
 Module Get URL
 --------------
-Ansible documentatie: `get_url`_
+Ansible documentatie: `get_url <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html>`_
 
 De module get_url is het Ansible alternatief voor het curl commando in Linux.
 
 Voorbeeld in Playbook
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
   - name: get new bash rc from github
     get_url:
@@ -156,7 +156,7 @@ Voorbeeld in Playbook
 
 Module Copy
 -----------
-Ansible documentatie: `copy`_
+Ansible documentatie: `copy <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html>`_
 
 Met de copy module kan een bestand of tekst gekopieerd worden naar een bestand.
 
@@ -164,7 +164,7 @@ Met de copy module kan een bestand of tekst gekopieerd worden naar een bestand.
 Voorbeeld van bestand kopieëren in Playbook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
   - name: Kopieer bestand en stel eigenaar en rechten in
     copy:
@@ -177,7 +177,7 @@ Voorbeeld van bestand kopieëren in Playbook
 Voorbeeld van bestand kopieëren en backup maken van oude betand
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
   - name: Kopieer bestand en stel eigenaar en rechten in
     copy:
@@ -191,7 +191,7 @@ Voorbeeld van tekst in een bestand kopieëren
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Bijkomend voordeel, als het bestand niet bestaat zal deze aangemaakt worden
 
-.. code-block::
+.. code-block:: yaml
 
    - name: Kopieer tekst in een bestand
      copy:
@@ -203,7 +203,7 @@ Bijkomend voordeel, als het bestand niet bestaat zal deze aangemaakt worden
 
 Module Line in File
 -------------------
-Ansible documentatie: `lineinfile`_
+Ansible documentatie: `lineinfile <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html>`_
 
 Met de module lineinfile kan tekst aangepast worden van een bestand.
 
@@ -211,7 +211,7 @@ Met de module lineinfile kan tekst aangepast worden van een bestand.
 Voorbeeld teskt toevoegen aan het einde van een bestand
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
    - name: Voeg tekst toe aan het einde van een bestand
      lineinfile:
@@ -225,7 +225,7 @@ Voorbeeld teskt toevoegen aan het einde van een bestand
 Voorbeeld bestaande tekst aanpassen
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
     - name: wijzig tekst
       lineinfile:
@@ -237,7 +237,7 @@ Voorbeeld bestaande tekst aanpassen
 Voorbeeld tekst toevoegen meerdere regels
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
     - name: wijzig tekst
       lineinfile:
@@ -251,38 +251,16 @@ Voorbeeld tekst toevoegen meerdere regels
 
 Module Service
 --------------
-Ansible Documentatie: `service`_
+Ansible Documentatie: `service <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html>`_
 
 
 Voorbeeld herstarten service in Playbook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block::
+.. code-block:: yaml
 
    - name: herstarten service
      service:
        name: <servicenaam>
        state: restarted
 
-
-
-
-.. External links
-
-.. _`docker_container`: https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html
-
-.. _`docker_network`: https://docs.ansible.com/ansible/2.3/docker_network_module.html
-
-.. _`file`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
-
-.. _`apt`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
-
-.. _`command`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html
-
-.. _`get_url`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html
-
-.. _`copy`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
-
-.. _`lineinfile`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
-
-.. _`service`: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html

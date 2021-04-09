@@ -11,7 +11,7 @@ Voor het opzetten van de Ansible master server kan gebruik worden gemaakt van he
 * Voeg hosts toe aan de Ansible inventory (/etc/ansible/hosts)
 * Test de verbinding naar de host met `ansible -m ping`
 
-Link naar `Ansible Setup Script`_
+Link naar `Ansible Setup Script <https://github.com/jebr/linux-scripts/tree/main/ansible-setup>`_
 
 Installeren van Anible Master op Windows
 ----------------------------------------
@@ -29,7 +29,7 @@ Installeren van Anible Master op Windows
 
 3. Download de Linux kernal update packege en voer deze uit
 
-`WSL2 Linux Kernal package for x64 machines`_
+`WSL2 Linux Kernal package for x64 machines <https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi>`_
 
 4. Zet WSL 2 als de standaard versie
 
@@ -53,7 +53,7 @@ Installeren van Anible Master op Windows
    :scale: 100%
    :alt: ubuntu install
 
-`Extra documentatie over WSL voor Windows 10`_
+`Extra documentatie over WSL voor Windows 10 <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`_
 
 Installeren van Ansible Master op Linux Ubuntu
 ----------------------------------------------
@@ -93,7 +93,7 @@ De configuratie van de Ansible hosts worden gedaan in het bestand **/etc/ansible
 Configuaratie Ansible
 ---------------------
 
-* `Ansible configuratie`_
+* `Ansible configuratie <https://raw.githubusercontent.com/Poly1305/ansible-orchestration/master/jeroen/ansible-config/ansible.cfg?token=AB26NX7P6XIEUJULLQFSKV3AL46OE>`_
 
 Eenvoudige test werking Ansible
 -------------------------------
@@ -127,13 +127,3 @@ Response:
 	"changed": false, 
 	"ping": "pong" 
 	} 
-
-.. External links
-
-.. _`Ansible configuratie`: https://raw.githubusercontent.com/Poly1305/ansible-orchestration/master/jeroen/ansible-config/ansible.cfg?token=AB26NX7P6XIEUJULLQFSKV3AL46OE
-
-.. _`Ansible Setup Script`: https://github.com/jebr/linux-scripts/tree/main/ansible-setup
-
-.. _`WSL2 Linux Kernal package for x64 machines`: https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
-
-.. _`Extra documentatie over WSL voor Windows 10`: https://docs.microsoft.com/en-us/windows/wsl/install-win10

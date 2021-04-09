@@ -9,7 +9,7 @@ Voor het opzetten van de OpenSSH server op Windows kan gebruik worden gemaakt va
 * Kopieer de public key van de master naar Windows
 * Wijzig de standaard shell van CMD naar Powershell
 
-Link naar `OpenSSH Server Setup Script`_
+Link naar `OpenSSH Server Setup Script <https://github.com/jebr/windows-scripts/tree/main/openssh-server>`_
 
 Installeer OpenSSH server Windows
 ---------------------------------
@@ -93,7 +93,3 @@ Controleer de SSH verbinding van Linux naar Windows
 .. code-block::
 
    ssh <username>@<ip-adres>
-
-.. External Links
-
-.. _`OpenSSH Server Setup Script`: https://github.com/jebr/windows-scripts/tree/main/openssh-server
