@@ -1,7 +1,5 @@
 .. Ansible Orchestration documentation master file, created by
    Jeroen Brauns on Sat Mar 20 11:24:03 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
 Welcome to Ansible Orchestration's documentation!
 =================================================
@@ -42,37 +40,26 @@ Ansible Modules
 Ansible Configuratie
 ====================
 
+* :doc:`ansible-opties`
 * :doc:`ansible-hosts`
-* `Ansible configuratie`_
+* `Ansible configuratie <https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/ansible.cfg>`_
 
 .. toctree::
    :maxdepth: 1
    :caption: Ansible Configuratie:
    :hidden:
 
+   ansible-opties.rst
    ansible-hosts.rst
+   Ansible configuratie <https://github.com/Poly1305/ansible-orchestration/blob/master/jeroen/ansible-config/ansible.cfg>
    
 
 Playbooks
 =========
 
-* `Playbooks Jeroen`_
-* `Playbooks Enes`_
-* `Playbooks Martijn`_
-* `Playbooks Joseph`_
+* `Playbooks Deployment <https://github.com/Poly1305/ansible-orchestration/tree/master/playbooks>`_
+* `Playbooks Jeroen <https://github.com/Poly1305/ansible-orchestration/tree/master/jeroen/playbooks>`_
+* `Playbooks Enes <https://github.com/Poly1305/ansible-orchestration/tree/master/enes/playbooks>`_
+* `Playbooks Martijn <https://github.com/Poly1305/ansible-orchestration/tree/master/joseph/ansible/playbooks>`_
+* `Playbooks Joseph <https://github.com/Poly1305/ansible-orchestration/tree/master/martijn/playbooks>`_
 
-.. External links
-
-.. _`Ansible configuratie`: https://raw.githubusercontent.com/Poly1305/ansible-orchestration/master/jeroen/ansible-config/ansible.cfg?token=AB26NX7P6XIEUJULLQFSKV3AL46OE
-
-.. _`Playbooks Jeroen`: https://github.com/Poly1305/ansible-orchestration/tree/master/jeroen/playbooks
-.. _`Playbooks Enes`: https://github.com/Poly1305/ansible-orchestration/tree/master/enes/playbooks
-.. _`Playbooks Joseph`: https://github.com/Poly1305/ansible-orchestration/tree/master/joseph/ansible/playbooks
-.. _`Playbooks Martijn`: https://github.com/Poly1305/ansible-orchestration/tree/master/martijn/playbooks
-
-.. Indices and tables
-.. ==================
-
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
